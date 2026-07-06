@@ -1,0 +1,11 @@
+# Conclusion del prototipo
+
+El prototipo Tutor Inteligente AED I cumple con el alcance definido para un sistema academico de apoyo al aprendizaje de Algoritmos y Estructuras de Datos I. La aplicacion integra autenticacion de usuarios, interaccion conversacional con IA, generacion de explicaciones y ejercicios, almacenamiento persistente del historial y una interfaz responsive adaptable a escritorio, notebook, tablet y celular.
+
+Desde el punto de vista tecnico, el sistema implementa una arquitectura cliente-servidor clara. El frontend gestiona la experiencia de usuario y la sesion mediante Supabase Auth, mientras que el backend valida tokens, aplica controles basicos de seguridad, recupera contexto academico y consume Gemini para generar respuestas. La persistencia de sesiones y mensajes en Supabase permite recuperar conversaciones anteriores y mantener continuidad en el proceso de aprendizaje.
+
+En relacion con la seguridad, el prototipo incorpora medidas basicas adecuadas para una entrega academica: variables de entorno protegidas, separacion entre claves privadas y variables publicas, CORS restringido, headers HTTP basicos, rate limit, validacion de token, validacion de mensajes, RLS en Supabase, proteccion contra intentos de prompt injection y rechazo de consultas fuera del dominio. Estas medidas no implican seguridad absoluta, pero reducen riesgos relevantes para el alcance del proyecto.
+
+Las pruebas tecnicas, de seguridad y responsive documentadas permiten respaldar el funcionamiento del sistema y preparar evidencias para la defensa. Los resultados muestran que el prototipo cumple los flujos principales: registro, login con email, login con Google, envio de consultas, respuesta del tutor, generacion de ejercicios, historial persistente, sidebar de conversaciones, cierre de sesion y adaptacion visual a distintos tamanos de pantalla.
+
+Como conclusion general, el prototipo alcanza su objetivo principal: ofrecer una herramienta de apoyo academico para AED I mediante un tutor conversacional con IA, manteniendo un alcance definido, controles de seguridad basicos y una experiencia de uso accesible desde diferentes dispositivos. Su estado actual es adecuado para presentacion como Trabajo Final de Grado, dejando identificadas limitaciones y lineas de mejora para una eventual evolucion institucional o productiva.
