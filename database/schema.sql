@@ -43,14 +43,9 @@ create table if not exists public.chat_messages (
   role text not null,
   content text not null,
   topic text,
-  difficulty text,
   created_at timestamptz not null default now(),
   constraint chat_messages_role_check check (role in ('user', 'assistant')),
-  constraint chat_messages_content_not_empty check (char_length(trim(content)) > 0),
-  constraint chat_messages_difficulty_check check (
-    difficulty is null
-    or difficulty in ('basico', 'intermedio', 'avanzado')
-  )
+  constraint chat_messages_content_not_empty check (char_length(trim(content)) > 0)
 );
 
 create index if not exists chat_messages_session_id_idx
@@ -67,14 +62,10 @@ create table if not exists public.knowledge_topics (
   unit text not null,
   topic text not null,
   subtopic text,
-  difficulty text not null default 'basico',
   description text not null,
   keywords text[] not null default '{}',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
-  constraint knowledge_topics_difficulty_check check (
-    difficulty in ('basico', 'intermedio', 'avanzado')
-  ),
   constraint knowledge_topics_unit_not_empty check (char_length(trim(unit)) > 0),
   constraint knowledge_topics_topic_not_empty check (char_length(trim(topic)) > 0),
   constraint knowledge_topics_description_not_empty check (char_length(trim(description)) > 0),
@@ -101,14 +92,10 @@ create table if not exists public.academic_materials (
   content text not null,
   source text,
   type text not null default 'teoria',
-  difficulty text not null default 'basico',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now(),
   constraint academic_materials_type_check check (
     type in ('teoria', 'ejemplo', 'ejercicio', 'bibliografia', 'guia')
-  ),
-  constraint academic_materials_difficulty_check check (
-    difficulty in ('basico', 'intermedio', 'avanzado')
   ),
   constraint academic_materials_title_not_empty check (char_length(trim(title)) > 0),
   constraint academic_materials_content_not_empty check (char_length(trim(content)) > 0),

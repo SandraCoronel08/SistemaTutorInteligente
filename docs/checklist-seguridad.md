@@ -21,7 +21,6 @@
 | SEG-API-04 | Errores seguros | No exponer stack trace | Error middleware centralizado | Aprobado |
 | SEG-API-05 | Mensaje vacio | Rechazo HTTP 400 | Validacion implementada | Aprobado |
 | SEG-API-06 | Longitud maxima | Rechazo mayor a 4000 caracteres | Validacion implementada | Aprobado |
-| SEG-API-07 | Dificultad valida | Solo `basico`, `intermedio`, `avanzado` | Validacion implementada | Aprobado |
 | SEG-CHAT-01 | Anti prompt injection | Tutor no obedece cambios de rol | Prompt contiene reglas de seguridad | Aprobado |
 | SEG-CHAT-02 | No revelar secretos | Tutor rechaza claves/tokens | Prompt contiene restriccion explicita | Aprobado |
 | SEG-CHAT-03 | Dominio AED I | Tutor rechaza temas externos | Prompt delimita contenidos permitidos | Aprobado |

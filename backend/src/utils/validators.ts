@@ -3,8 +3,6 @@ import { AppError } from "../middlewares/errorMiddleware.js";
 const uuidRegex =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-export type Difficulty = "basico" | "intermedio" | "avanzado";
-
 export const validateRequiredUser = (userId?: string) => {
   if (!userId) {
     throw new AppError("Usuario autenticado requerido.", 401);
@@ -85,23 +83,4 @@ export const validateTitle = (value: unknown) => {
   }
 
   return title;
-};
-
-export const validateDifficulty = (value: unknown) => {
-  if (value === undefined || value === null || value === "") {
-    return undefined;
-  }
-
-  if (
-    value !== "basico" &&
-    value !== "intermedio" &&
-    value !== "avanzado"
-  ) {
-    throw new AppError(
-      "La dificultad debe ser basico, intermedio o avanzado.",
-      400
-    );
-  }
-
-  return value as Difficulty;
 };

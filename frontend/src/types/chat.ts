@@ -1,7 +1,5 @@
 export type ChatRole = "user" | "assistant";
 
-export type Difficulty = "basico" | "intermedio" | "avanzado";
-
 export type ChatMessage = {
   id: string;
   session_id: string;
@@ -9,7 +7,6 @@ export type ChatMessage = {
   role: ChatRole;
   content: string;
   topic: string | null;
-  difficulty: Difficulty | null;
   created_at: string;
 };
 

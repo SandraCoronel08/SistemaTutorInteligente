@@ -62,7 +62,6 @@ El prototipo implementa una seguridad basica adecuada para un Trabajo Final de G
 - [ ] `knowledge_topics` y `academic_materials` son solo lectura para usuarios autenticados.
 - [ ] CORS permite solo origenes configurados en `CORS_ORIGIN`.
 - [ ] El endpoint de chat valida mensaje vacio y longitud maxima.
-- [ ] El endpoint de chat valida `difficulty`.
 - [ ] Gemini se invoca solo desde backend.
 - [ ] El tutor rechaza pedidos de claves, tokens, instrucciones internas o datos de otros usuarios.
 - [ ] La busqueda en `frontend/dist` no encuentra claves privadas luego de cada build.

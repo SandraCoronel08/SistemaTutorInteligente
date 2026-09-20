@@ -34,12 +34,6 @@
 2. Elegir un tema del programa de AED I.
 3. Escribir la consulta y enviarla.
 
-## Seleccionar dificultad
-
-1. En el encabezado del chat, abrir el selector "Dificultad".
-2. Elegir basico, intermedio o avanzado.
-3. El tutor ajusta la explicacion o ejercicio al nivel indicado.
-
 ## Enviar consultas
 
 1. Escribir la pregunta en la barra inferior.
@@ -72,4 +66,4 @@ El tutor puede entregar enunciado, pistas progresivas y explicaciones. Si el est
 
 ## Uso desde celular
 
-En celular, el sidebar se abre mediante el boton hamburguesa. El chat ocupa todo el ancho disponible, el input permanece abajo y los selectores de tema y dificultad se acomodan en una disposicion compacta. Se recomienda escribir consultas breves y revisar las respuestas con desplazamiento vertical dentro del area de mensajes.
+En celular, el sidebar se abre mediante el boton hamburguesa. El chat ocupa todo el ancho disponible, el input permanece abajo y el selector de tema se acomoda en una disposicion compacta. Se recomienda escribir consultas breves y revisar las respuestas con desplazamiento vertical dentro del area de mensajes.

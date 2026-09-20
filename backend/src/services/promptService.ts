@@ -6,7 +6,6 @@ type BuildPromptInput = {
   history: Pick<ChatMessage, "role" | "content">[];
   knowledge: KnowledgeContext;
   topic?: string;
-  difficulty?: string;
 };
 
 const systemPrompt = `
@@ -80,14 +79,14 @@ const formatKnowledge = (knowledge: KnowledgeContext) => {
   const topics = knowledge.topics
     .map(
       (item) =>
-        `- ${item.unit} | ${item.topic} | ${item.subtopic ?? "Sin subtema"} | ${item.difficulty}: ${item.description}`
+        `- ${item.unit} | ${item.topic} | ${item.subtopic ?? "Sin subtema"}: ${item.description}`
     )
     .join("\n");
 
   const materials = knowledge.materials
     .map(
       (item) =>
-        `- ${item.title} (${item.type}, ${item.difficulty}): ${item.content}`
+        `- ${item.title} (${item.type}): ${item.content}`
     )
     .join("\n");
 
@@ -104,8 +103,7 @@ export const buildTutorPrompt = ({
   message,
   history,
   knowledge,
-  topic,
-  difficulty
+  topic
 }: BuildPromptInput) => `
 ${systemPrompt}
 
@@ -113,7 +111,6 @@ Contexto academico recuperado:
 ${formatKnowledge(knowledge)}
 
 Tema indicado por el estudiante: ${topic ?? "No indicado"}
-Dificultad indicada por el estudiante: ${difficulty ?? "No indicada"}
 
 Historial reciente de la conversacion:
 ${formatHistory(history)}
@@ -121,5 +118,5 @@ ${formatHistory(history)}
 Consulta actual del estudiante:
 ${message}
 
-Responde como tutor academico. Si corresponde generar un ejercicio, incluye titulo, tema, dificultad, enunciado, entrada/salida esperada si aplica y pistas progresivas. No muestres solucion completa salvo que el estudiante la solicite explicitamente.
+Responde como tutor academico. Si corresponde generar un ejercicio, incluye titulo, tema, enunciado, entrada/salida esperada si aplica y pistas progresivas. No muestres solucion completa salvo que el estudiante la solicite explicitamente.
 `;

@@ -13,7 +13,6 @@ import {
   touchSession
 } from "../services/sessionService.js";
 import {
-  validateDifficulty,
   validateMessage,
   validateOptionalText,
   validateOptionalUuid,
@@ -44,7 +43,6 @@ export const sendChatMessage = async (
     const message = validateMessage(req.body?.message);
     const sessionIdInput = validateOptionalUuid(req.body?.sessionId, "sessionId");
     const topic = validateOptionalText(req.body?.topic, "topic", 120);
-    const difficulty = validateDifficulty(req.body?.difficulty);
 
     const session = sessionIdInput
       ? await getSessionById(supabase, userId, sessionIdInput)
@@ -55,8 +53,7 @@ export const sendChatMessage = async (
       userId,
       role: "user",
       content: message,
-      topic,
-      difficulty
+      topic
     });
 
     const history = await getRecentMessages(supabase, userId, session.id, 10);
@@ -65,8 +62,7 @@ export const sendChatMessage = async (
       message,
       history,
       knowledge,
-      topic,
-      difficulty
+      topic
     });
     const answer = await generateTutorAnswer(prompt);
 
@@ -75,8 +71,7 @@ export const sendChatMessage = async (
       userId,
       role: "assistant",
       content: answer,
-      topic,
-      difficulty
+      topic
     });
 
     await touchSession(supabase, userId, session.id);

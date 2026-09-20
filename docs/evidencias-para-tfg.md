@@ -12,7 +12,6 @@ Este documento lista capturas y evidencias recomendadas para respaldar la presen
 - Chat con respuesta del tutor.
 - Generacion de ejercicio de AED I.
 - Selector de tema.
-- Selector de dificultad.
 - Historial de conversaciones en sidebar.
 - Recuperacion de una conversacion anterior.
 - Cierre de sesion.

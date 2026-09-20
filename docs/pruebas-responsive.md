@@ -21,7 +21,7 @@ Las pruebas responsive verifican que la interfaz sea usable en escritorio, noteb
 - El input permanece visible abajo.
 - Las burbujas de mensajes no desbordan el ancho.
 - Las sugerencias se muestran en una columna en celular.
-- Los selectores de tema y dificultad se acomodan en pantallas pequenas.
+- El selector de tema se acomoda en pantallas pequenas.
 - El sidebar se mantiene fijo en escritorio y funciona como drawer en tablet/celular.
 
 ## Procedimiento recomendado en DevTools

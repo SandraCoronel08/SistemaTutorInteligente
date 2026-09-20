@@ -1,6 +1,6 @@
 import { RefreshCw, SendHorizonal } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
-import type { ChatMessage, Difficulty } from "../types/chat";
+import type { ChatMessage } from "../types/chat";
 import { LoadingIndicator } from "./LoadingIndicator";
 import { MessageBubble } from "./MessageBubble";
 
@@ -61,7 +61,6 @@ type ChatWindowProps = {
   onSendMessage: (input: {
     message: string;
     topic?: string;
-    difficulty?: Difficulty;
   }) => Promise<void>;
 };
 
@@ -77,7 +76,6 @@ export function ChatWindow({
 }: ChatWindowProps): JSX.Element {
   const [message, setMessage] = useState("");
   const [topic, setTopic] = useState("");
-  const [difficulty, setDifficulty] = useState<Difficulty | "">("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
   const welcomeGreeting = useMemo(() => {
@@ -112,8 +110,7 @@ export function ChatWindow({
 
     await onSendMessage({
       message: content,
-      topic: topic || undefined,
-      difficulty: difficulty || undefined
+      topic: topic || undefined
     });
   };
 
@@ -141,20 +138,6 @@ export function ChatWindow({
                     {option || "Sin tema fijo"}
                   </option>
                 ))}
-              </select>
-            </label>
-            <label>
-              Dificultad
-              <select
-                value={difficulty}
-                onChange={(event) =>
-                  setDifficulty(event.target.value as Difficulty | "")
-                }
-              >
-                <option value="">Sin nivel fijo</option>
-                <option value="basico">Basico</option>
-                <option value="intermedio">Intermedio</option>
-                <option value="avanzado">Avanzado</option>
               </select>
             </label>
           </div>

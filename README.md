@@ -2,7 +2,7 @@
 
 ## Descripcion
 
-Tutor Inteligente AED I es un prototipo academico de sistema tutor conversacional para apoyar el aprendizaje de la asignatura Algoritmos y Estructuras de Datos I. La aplicacion permite a los estudiantes registrarse, iniciar sesion, conversar con un tutor basado en IA, seleccionar tema y dificultad, generar explicaciones o ejercicios, y recuperar el historial de conversaciones.
+Tutor Inteligente AED I es un prototipo academico de sistema tutor conversacional para apoyar el aprendizaje de la asignatura Algoritmos y Estructuras de Datos I. La aplicacion permite a los estudiantes registrarse, iniciar sesion, conversar con un tutor basado en IA, seleccionar tema, generar explicaciones o ejercicios, y recuperar el historial de conversaciones.
 
 El sistema fue desarrollado como prototipo para un Trabajo Final de Grado. No reemplaza al docente ni constituye una herramienta de evaluacion formal; su alcance es brindar apoyo academico guiado dentro del dominio de AED I.
 
@@ -22,7 +22,7 @@ Desarrollar un prototipo funcional de tutor inteligente que integre autenticacio
 
 La arquitectura es cliente-servidor:
 
-- El frontend presenta las pantallas de login, registro, chat, sidebar, historial, selectores de tema y dificultad.
+- El frontend presenta las pantallas de login, registro, chat, sidebar, historial y selector de tema.
 - Supabase Auth gestiona autenticacion por email/contrasena y Google OAuth.
 - El frontend obtiene el `access_token` de Supabase y lo envia al backend mediante `Authorization: Bearer`.
 - El backend valida el token con Supabase, procesa las solicitudes y usa el usuario autenticado para consultar o guardar datos.
@@ -123,7 +123,7 @@ Por defecto:
 - Inicio de sesion con email y contrasena.
 - Inicio de sesion real con Google mediante Supabase Auth.
 - Chat academico con IA para AED I.
-- Seleccion de tema y dificultad.
+- Seleccion de tema.
 - Generacion de explicaciones, ejemplos y ejercicios.
 - Historial persistente de conversaciones.
 - Sidebar de sesiones.
@@ -141,7 +141,7 @@ El prototipo incorpora medidas basicas adecuadas para un entorno academico:
 - Rate limit en el endpoint de chat.
 - Validacion de token de Supabase en rutas protegidas.
 - Validacion de mensajes vacios y longitud maxima de 4000 caracteres.
-- Validacion de dificultad y textos opcionales.
+- Validacion de textos opcionales.
 - RLS en Supabase para aislar sesiones y mensajes por usuario.
 - Prompt del tutor reforzado contra prompt injection.
 - Rechazo de consultas fuera del dominio de AED I.

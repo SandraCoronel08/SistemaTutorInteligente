@@ -17,7 +17,6 @@ Las siguientes pruebas documentan la validacion funcional del prototipo. Las pru
 | TEC-011 | Guardar historial | Verificar persistencia | Mensaje enviado | Consultar mensajes de la sesion | Mensaje usuario y respuesta guardados | Mensajes visibles dentro de la conversacion activa | Aprobado |
 | TEC-012 | Recuperar historial | Verificar lectura persistente | Sesion con mensajes | Recargar y seleccionar sesion | Historial cargado | Conversaciones previas se recuperan desde Supabase | Aprobado |
 | TEC-013 | Seleccionar tema | Verificar envio de topic | Usuario autenticado | Elegir tema y enviar consulta | El backend acepta el topic valido | Selector visible y conectado al envio del mensaje | Aprobado |
-| TEC-014 | Seleccionar dificultad | Verificar envio de difficulty | Usuario autenticado | Elegir basico, intermedio o avanzado | Mensaje aceptado | Dificultad validada en backend | Aprobado |
 | TEC-015 | Consulta fuera del dominio | Validar alcance academico | Usuario autenticado | Preguntar tema ajeno a AED I | Rechazo amable y sugerencia de reformular | Ante consulta externa, el tutor mantiene el dominio AED I | Aprobado |
 | TEC-016 | Error de Gemini | Validar manejo de fallo IA | Simular fallo de API | Enviar mensaje | Error seguro sin stack trace | Manejo de errores centralizado; requiere evidencia controlada | Observado |
 | TEC-017 | Error de Supabase | Validar manejo DB | Simular fallo DB o RLS | Consultar o guardar datos | Mensaje seguro | Manejo de errores centralizado; requiere evidencia controlada | Observado |

@@ -11,7 +11,7 @@ import {
   getSessions,
   sendChatMessage
 } from "../services/api";
-import type { ChatMessage, Difficulty } from "../types/chat";
+import type { ChatMessage } from "../types/chat";
 import type { ChatSession } from "../types/session";
 
 const NEW_SESSION_TITLE = "Nueva conversacion";
@@ -143,7 +143,6 @@ export function Chat(): JSX.Element {
   const handleSendMessage = async (input: {
     message: string;
     topic?: string;
-    difficulty?: Difficulty;
   }) => {
     setSending(true);
     setError("");

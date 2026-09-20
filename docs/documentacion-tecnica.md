@@ -37,10 +37,10 @@ Supabase cumple dos funciones: proveedor de autenticacion y base de datos Postgr
 ## Flujo de envio de mensaje
 
 1. El usuario escribe una consulta en el chat.
-2. Puede seleccionar tema y dificultad.
+2. Puede seleccionar tema.
 3. El frontend valida estado basico y envia el mensaje al backend.
 4. El backend autentica el token.
-5. El backend valida mensaje, tema, dificultad y sesion.
+5. El backend valida mensaje, tema y sesion.
 6. El backend recupera historial reciente y contexto academico.
 7. Se construye un prompt con reglas pedagogicas y de seguridad.
 8. Gemini genera la respuesta.
@@ -126,7 +126,7 @@ Las variables privadas del backend no deben copiarse al frontend.
 - CORS restringido.
 - Headers basicos de seguridad.
 - Rate limit en `/api/chat/send`.
-- Validacion de mensajes vacios, longitud maxima y dificultad.
+- Validacion de mensajes vacios, longitud maxima y textos opcionales.
 - RLS en tablas principales.
 - Prompt reforzado contra prompt injection.
 - Rechazo de solicitudes fuera del dominio academico.

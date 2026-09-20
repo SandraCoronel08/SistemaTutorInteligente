@@ -1,6 +1,6 @@
 import axios from "axios";
 import { supabase } from "./supabaseClient";
-import type { ChatMessage, Difficulty, SendChatResponse } from "../types/chat";
+import type { ChatMessage, SendChatResponse } from "../types/chat";
 import type { ChatSession } from "../types/session";
 
 const apiUrl = import.meta.env.VITE_API_URL ?? "http://localhost:3001";
@@ -62,7 +62,6 @@ export const sendChatMessage = async (input: {
   sessionId?: string;
   message: string;
   topic?: string;
-  difficulty?: Difficulty;
 }) => {
   const { data } = await api.post<SendChatResponse>("/api/chat/send", input);
   return data;

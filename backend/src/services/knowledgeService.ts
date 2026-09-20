@@ -6,7 +6,6 @@ export type KnowledgeContext = {
     unit: string;
     topic: string;
     subtopic: string | null;
-    difficulty: string;
     description: string;
     keywords: string[];
   }[];
@@ -17,7 +16,6 @@ export type KnowledgeContext = {
     content: string;
     source: string | null;
     type: string;
-    difficulty: string;
   }[];
 };
 
@@ -60,7 +58,7 @@ export const findKnowledgeContext = async (
 
   const { data: topics } = await supabase
     .from("knowledge_topics")
-    .select("id, unit, topic, subtopic, difficulty, description, keywords")
+    .select("id, unit, topic, subtopic, description, keywords")
     .or(orFilter)
     .limit(5);
 
@@ -73,7 +71,7 @@ export const findKnowledgeContext = async (
 
   const { data: materials } = await supabase
     .from("academic_materials")
-    .select("id, topic_id, title, content, source, type, difficulty")
+    .select("id, topic_id, title, content, source, type")
     .in("topic_id", topicIds)
     .limit(6);
 

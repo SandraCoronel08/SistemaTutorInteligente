@@ -1,6 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { AppError } from "../middlewares/errorMiddleware.js";
-import type { Difficulty } from "../utils/validators.js";
 
 export type ChatMessageRole = "user" | "assistant";
 
@@ -11,7 +10,6 @@ export type ChatMessage = {
   role: ChatMessageRole;
   content: string;
   topic: string | null;
-  difficulty: Difficulty | null;
   created_at: string;
 };
 
@@ -21,7 +19,6 @@ type CreateMessageInput = {
   role: ChatMessageRole;
   content: string;
   topic?: string;
-  difficulty?: Difficulty;
 };
 
 export const createMessage = async (
@@ -35,8 +32,7 @@ export const createMessage = async (
       user_id: input.userId,
       role: input.role,
       content: input.content,
-      topic: input.topic,
-      difficulty: input.difficulty
+      topic: input.topic
     })
     .select("*")
     .single();
