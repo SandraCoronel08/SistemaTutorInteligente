@@ -48,6 +48,14 @@ export const sendChatMessage = async (
       ? await getSessionById(supabase, userId, sessionIdInput)
       : await createSession(supabase, userId, buildSessionTitle(message));
 
+    const history = await getRecentMessages(supabase, userId, session.id, 6);
+    const knowledge = await findKnowledgeContext(supabase, message, topic);
+    const prompt = buildTutorPrompt({
+      message,
+      history,
+      knowledge
+    });
+
     const userMessage = await createMessage(supabase, {
       sessionId: session.id,
       userId,
@@ -56,14 +64,6 @@ export const sendChatMessage = async (
       topic
     });
 
-    const history = await getRecentMessages(supabase, userId, session.id, 10);
-    const knowledge = await findKnowledgeContext(supabase, message, topic);
-    const prompt = buildTutorPrompt({
-      message,
-      history,
-      knowledge,
-      topic
-    });
     const answer = await generateTutorAnswer(prompt);
 
     const assistantMessage = await createMessage(supabase, {

@@ -67,7 +67,7 @@ export const getRecentMessages = async (
   supabase: SupabaseClient,
   userId: string,
   sessionId: string,
-  limit = 10
+  limit = 6
 ) => {
   const { data, error } = await supabase
     .from("chat_messages")
