@@ -9,15 +9,15 @@ type Env = {
   supabaseUrl: string;
   supabaseAnonKey: string;
   supabaseServiceRoleKey: string;
-  geminiApiKey: string;
-  geminiModel: string;
+  openrouterApiKey: string;
+  openrouterModel: string;
 };
 
 const requiredVars = [
   "SUPABASE_URL",
   "SUPABASE_ANON_KEY",
   "SUPABASE_SERVICE_ROLE_KEY",
-  "GEMINI_API_KEY"
+  "OPENROUTER_API_KEY"
 ] as const;
 
 for (const varName of requiredVars) {
@@ -39,6 +39,6 @@ export const env: Env = {
   supabaseUrl: process.env.SUPABASE_URL as string,
   supabaseAnonKey: process.env.SUPABASE_ANON_KEY as string,
   supabaseServiceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY as string,
-  geminiApiKey: process.env.GEMINI_API_KEY as string,
-  geminiModel: process.env.GEMINI_MODEL ?? "gemini-2.5-flash"
+  openrouterApiKey: process.env.OPENROUTER_API_KEY as string,
+  openrouterModel: process.env.OPENROUTER_MODEL ?? "openai/gpt-5.6-luna"
 };

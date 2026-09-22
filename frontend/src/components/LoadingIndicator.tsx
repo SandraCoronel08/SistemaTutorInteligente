@@ -16,10 +16,12 @@ export function LoadingIndicator({
       >
         <div className="message-avatar">AI</div>
         <div className="message-bubble message-assistant loading-message">
-          <span className="loading-dot" />
-          <span className="loading-dot" />
-          <span className="loading-dot" />
-          <span className="sr-only">{label}</span>
+          <span className="loading-dots" aria-hidden="true">
+            <span className="loading-dot" />
+            <span className="loading-dot" />
+            <span className="loading-dot" />
+          </span>
+          <span>{label}</span>
         </div>
       </article>
     );

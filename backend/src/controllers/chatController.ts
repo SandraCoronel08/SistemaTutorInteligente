@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { AppError } from "../middlewares/errorMiddleware.js";
-import { generateTutorAnswer } from "../services/geminiService.js";
+import { generateTutorAnswer } from "../services/openrouterService.js";
 import { findKnowledgeContext } from "../services/knowledgeService.js";
 import {
   createMessage,

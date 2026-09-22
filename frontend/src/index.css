@@ -197,8 +197,7 @@ a:hover {
   text-align: center;
 }
 
-.auth-form label,
-.chat-selectors label {
+.auth-form label {
   display: grid;
   gap: 6px;
   color: #344054;
@@ -207,7 +206,6 @@ a:hover {
 }
 
 .auth-form input,
-.chat-selectors select,
 .chat-input-bar textarea {
   width: 100%;
   border: 1px solid var(--border);
@@ -221,8 +219,7 @@ a:hover {
   width: 100%;
 }
 
-.auth-form input,
-.chat-selectors select {
+.auth-form input {
   min-width: 0;
   min-height: 42px;
   padding: 10px 12px;
@@ -235,7 +232,6 @@ a:hover {
 }
 
 .auth-form input:focus,
-.chat-selectors select:focus,
 .chat-input-bar textarea:focus {
   border-color: var(--primary);
   box-shadow: 0 0 0 3px rgb(20 108 92 / 16%);
@@ -480,8 +476,10 @@ a:hover {
   transform: translateX(-100%);
   transition: transform 200ms ease;
   z-index: 200;
-  display: grid;
-  grid-template-rows: auto auto auto 1fr auto;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
   padding: 20px 16px;
   box-shadow: 12px 0 32px rgb(92 107 192 / 14%);
@@ -513,6 +511,7 @@ a:hover {
 
 .sidebar-header {
   justify-content: space-between;
+  flex: 0 0 auto;
 }
 
 .sidebar-brand {
@@ -532,16 +531,18 @@ a:hover {
 .sidebar-logo {
   width: 46px;
   height: 46px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, var(--secondary), var(--primary));
-  color: #ffffff;
-  font-size: 0.78rem;
-  font-weight: 900;
-  letter-spacing: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eee9ff;
+}
+
+.sidebar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(2.25);
+  transform-origin: center 31%;
 }
 
 .sidebar-header span,
@@ -554,6 +555,7 @@ a:hover {
 }
 
 .new-session-button {
+  flex: 0 0 auto;
   width: 100%;
   min-height: 46px;
   border: 1px solid rgb(124 77 255 / 24%);
@@ -568,11 +570,15 @@ a:hover {
 }
 
 .sessions-count {
+  flex: 0 0 auto;
   font-weight: 800;
 }
 
 .sessions-list {
-  overflow: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
   display: grid;
   align-content: start;
   gap: 10px;
@@ -580,6 +586,8 @@ a:hover {
 }
 
 .session-item {
+  flex: 0 0 auto;
+  min-height: 66px;
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: stretch;
@@ -652,12 +660,12 @@ a:hover {
 }
 
 .app-header {
-  min-height: 84px;
-  gap: 12px;
+  min-height: 64px;
+  gap: 10px;
   justify-content: flex-start;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
-  padding: 16px 24px 14px;
+  padding: 10px 20px 8px;
   min-width: 0;
 }
 
@@ -702,24 +710,24 @@ a:hover {
   height: auto;
   display: flex;
   flex-direction: column;
-  margin: 14px 18px 18px;
+  margin: 8px 12px 10px;
   overflow: hidden;
   background:
     linear-gradient(180deg, rgb(255 255 255 / 78%), rgb(255 255 255 / 92%)),
     #ffffff;
   border: 1px solid rgb(232 228 255 / 76%);
-  border-radius: 34px;
+  border-radius: 24px;
   box-shadow: 0 24px 70px rgb(124 77 255 / 12%);
   overflow: hidden;
 }
 
 .chat-context {
-  min-height: 74px;
+  min-height: 60px;
   display: grid;
   grid-template-columns: 1fr minmax(160px, auto) 1fr;
   align-items: center;
-  gap: 14px;
-  padding: 0 28px;
+  gap: 10px;
+  padding: 0 20px;
   min-width: 0;
   background: rgb(255 255 255 / 64%);
   border-bottom: 1px solid rgb(240 238 255 / 86%);
@@ -727,8 +735,8 @@ a:hover {
 }
 
 .chat-context-badge {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -762,27 +770,6 @@ a:hover {
   min-width: 0;
 }
 
-.chat-selectors {
-  display: grid;
-  grid-template-columns: minmax(150px, 220px) minmax(130px, 180px);
-  gap: 8px;
-  min-width: 0;
-}
-
-.chat-selectors label {
-  color: #79728f;
-  font-size: 0.74rem;
-  gap: 4px;
-}
-
-.chat-selectors select {
-  min-height: 36px;
-  border-color: #ece6ff;
-  border-radius: 999px;
-  background: rgb(255 255 255 / 86%);
-  padding: 7px 12px;
-}
-
 .messages-area {
   min-height: 0;
   overflow-y: auto;
@@ -792,11 +779,11 @@ a:hover {
 }
 
 .messages-container {
-  max-width: 760px;
+  max-width: 920px;
   width: 100%;
   min-height: 100%;
   margin: 0 auto;
-  padding: 34px 48px 22px;
+  padding: 20px 28px 16px;
   display: flex;
   flex-direction: column;
 }
@@ -847,15 +834,15 @@ a:hover {
 .message-row {
   display: flex;
   align-items: flex-start;
-  gap: 14px;
+  gap: 10px;
   justify-content: flex-start;
-  margin-bottom: 32px;
+  margin-bottom: 18px;
   min-width: 0;
 }
 
 .message-row-user {
   justify-content: flex-end;
-  margin-bottom: 24px;
+  margin-bottom: 14px;
 }
 
 .message-bubble {
@@ -864,8 +851,8 @@ a:hover {
   overflow-wrap: anywhere;
   word-break: break-word;
   border: 1px solid rgb(232 228 255 / 74%);
-  border-radius: 22px;
-  padding: 16px 18px;
+  border-radius: 18px;
+  padding: 11px 14px;
   box-shadow: 0 14px 34px rgb(124 77 255 / 8%);
 }
 
@@ -873,23 +860,24 @@ a:hover {
   max-width: 75%;
   background: rgb(255 255 255 / 88%);
   color: var(--text);
-  padding: 14px 18px;
-  border-radius: 22px 22px 6px 22px;
-  line-height: 1.6;
+  padding: 10px 14px;
+  border-radius: 18px 18px 6px 18px;
+  font-size: 15px;
+  line-height: 1.55;
   box-shadow: 0 16px 36px rgb(124 77 255 / 10%);
 }
 
 .message-assistant {
-  max-width: calc(100% - 42px);
+  max-width: calc(100% - 36px);
   background: rgb(255 255 255 / 88%);
   color: var(--text);
-  line-height: 1.8;
+  line-height: 1.6;
   font-size: 15px;
 }
 
 .message-avatar {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
@@ -905,9 +893,9 @@ a:hover {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
   font-weight: 800;
-  font-size: 0.76rem;
+  font-size: 0.72rem;
 }
 
 .message-user .message-meta {
@@ -926,9 +914,27 @@ a:hover {
 }
 
 .markdown-body {
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--text);
   font-size: 15px;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+  line-height: 1.3;
+}
+
+.markdown-body h1 {
+  font-size: 1.3rem;
+}
+
+.markdown-body h2 {
+  font-size: 1.15rem;
+}
+
+.markdown-body h3 {
+  font-size: 1.02rem;
 }
 
 .markdown-body > *:first-child {
@@ -980,8 +986,8 @@ a:hover {
   bottom: 0;
   z-index: 50;
   display: grid;
-  gap: 8px;
-  padding: 12px 48px 20px;
+  gap: 4px;
+  padding: 8px 28px 10px;
   width: 100%;
   background: linear-gradient(180deg, rgb(255 255 255 / 30%), rgb(255 255 255 / 88%));
   border-top: 0;
@@ -990,7 +996,7 @@ a:hover {
 
 .chat-input-shell {
   position: relative;
-  max-width: 720px;
+  max-width: 840px;
   width: 100%;
   min-width: 0;
   margin: 0 auto;
@@ -998,14 +1004,14 @@ a:hover {
 
 .chat-input-bar textarea {
   resize: none;
-  min-height: 52px;
+  min-height: 46px;
   max-height: 200px;
-  padding: 14px 56px 14px 20px;
+  padding: 10px 54px 10px 16px;
   min-width: 0;
-  line-height: 1.45;
+  line-height: 1.4;
   border: 1px solid #ece6ff;
   border-radius: 999px;
-  font-size: 15px;
+  font-size: 0.9rem;
   background: #ffffff;
   overflow-y: auto;
   box-shadow: 0 16px 36px rgb(124 77 255 / 10%);
@@ -1019,7 +1025,8 @@ a:hover {
 .send-button {
   position: absolute;
   right: 8px;
-  bottom: 8px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 42px;
   height: 42px;
   border-radius: 999px;
@@ -1036,7 +1043,7 @@ a:hover {
   margin: 0;
   text-align: center;
   color: #aaaaaa;
-  font-size: 12px;
+  font-size: 0.7rem;
 }
 
 .loading-indicator {
@@ -1063,7 +1070,18 @@ a:hover {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  min-width: 64px;
+  min-width: 196px;
+}
+
+.loading-dots {
+  display: inline-flex;
+  gap: 7px;
+}
+
+.sessions-sidebar-disabled .new-session-button:disabled,
+.sessions-sidebar-disabled .session-select-button:disabled,
+.sessions-sidebar-disabled .session-item .icon-button:disabled {
+  opacity: 0.55;
 }
 
 .loading-dot:nth-child(2) {
@@ -1084,18 +1102,28 @@ a:hover {
   text-align: center;
 }
 
+.sidebar-account {
+  position: relative;
+  flex: 0 0 auto;
+}
+
 .sidebar-user {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   gap: 10px;
   align-items: center;
   padding-top: 14px;
   border-top: 1px solid var(--border);
 }
 
-.sidebar-user .logout-button {
-  grid-column: 1 / -1;
-  width: 100%;
+.sidebar-user:hover:not(:disabled) .user-details strong {
+  color: var(--primary);
 }
 
 .user-avatar {
@@ -1108,6 +1136,225 @@ a:hover {
   background: #f1edff;
   color: var(--primary);
   font-weight: 900;
+  overflow: hidden;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-panel-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(31 31 51 / 36%);
+}
+
+.profile-panel {
+  width: min(100%, 440px);
+  max-height: min(760px, calc(100dvh - 40px));
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #e8e4ff;
+  border-radius: 20px;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 24px 70px rgb(31 31 51 / 24%);
+  outline: none;
+}
+
+.profile-panel-header,
+.profile-section-title,
+.profile-summary,
+.profile-photo-actions,
+.profile-account-actions,
+.profile-confirmation > div {
+  display: flex;
+  align-items: center;
+}
+
+.profile-panel-header,
+.profile-section-title {
+  justify-content: space-between;
+}
+
+.profile-panel h2,
+.profile-panel h3 {
+  margin: 0;
+}
+
+.profile-panel h2 {
+  font-size: 1.2rem;
+}
+
+.profile-summary {
+  gap: 14px;
+  margin: 18px 0 10px;
+}
+
+.profile-summary > div {
+  display: grid;
+  gap: 3px;
+}
+
+.profile-summary > div span,
+.profile-about p,
+.profile-about span {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+.profile-avatar {
+  position: relative;
+  width: 74px;
+  height: 74px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: #eee9ff;
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-avatar-edit {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+  display: inline-flex;
+  width: 27px;
+  height: 27px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #ffffff;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.profile-photo-actions {
+  gap: 10px;
+  margin-left: 88px;
+}
+
+.profile-photo-actions button,
+.profile-section-title button,
+.profile-edit-name button,
+.report-form button,
+.profile-account-actions > button,
+.profile-confirmation button {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #f1edff;
+  color: #4d2db7;
+  font-weight: 750;
+}
+
+.profile-section {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid #eeeaff;
+}
+
+.profile-section h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.94rem;
+}
+
+.profile-section-title button,
+.profile-account-actions > button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.profile-edit-name,
+.report-form,
+.profile-confirmation {
+  display: grid;
+  gap: 10px;
+}
+
+.profile-edit-name label,
+.report-form label,
+.profile-confirmation label {
+  display: grid;
+  gap: 5px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.profile-edit-name input,
+.report-form select,
+.report-form textarea,
+.profile-confirmation input {
+  width: 100%;
+  border: 1px solid #dcd5ff;
+  border-radius: 8px;
+  padding: 9px;
+  color: var(--text);
+}
+
+.report-form textarea {
+  min-height: 76px;
+  resize: vertical;
+}
+
+.profile-edit-name > div,
+.profile-confirmation > div {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.profile-about {
+  gap: 6px;
+}
+
+.profile-about p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.profile-account-actions {
+  align-items: stretch;
+  flex-direction: column;
+}
+
+.profile-account-actions > button {
+  justify-content: flex-start;
+  background: transparent;
+  color: var(--text);
+}
+
+.profile-danger {
+  color: #b42318 !important;
+}
+
+.profile-status {
+  margin: 16px 0 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: #f1edff;
+  color: #4d2db7;
+  font-size: 0.86rem;
 }
 
 .user-details span {
@@ -1144,19 +1391,19 @@ a:hover {
   }
 
   .app-header {
-    min-height: 76px;
-    padding: 14px 18px 12px;
+    min-height: 62px;
+    padding: 8px 16px;
   }
 
   .chat-window {
-    margin: 12px;
+    margin: 8px;
     border-radius: 24px;
   }
 
   .chat-context {
-    min-height: 70px;
+    min-height: 58px;
     grid-template-columns: auto minmax(0, 1fr) auto;
-    padding: 12px 18px;
+    padding: 8px 16px;
   }
 
   .chat-context-title {
@@ -1164,21 +1411,17 @@ a:hover {
     font-size: 1.15rem;
   }
 
-  .chat-selectors {
-    grid-template-columns: minmax(130px, 200px) minmax(120px, 170px);
-  }
-
   .messages-area {
-    padding: 14px 18px;
+    padding: 8px 14px;
   }
 
   .messages-container {
-    max-width: 720px;
-    padding: 26px 24px 18px;
+    max-width: 840px;
+    padding: 16px 22px 14px;
   }
 
   .chat-input-bar {
-    padding: 14px 24px 18px;
+    padding: 8px 22px 10px;
   }
 }
 
@@ -1316,12 +1559,6 @@ a:hover {
     padding: 12px 14px;
   }
 
-  .chat-selectors {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    width: 100%;
-  }
-
   .chat-context-title {
     max-width: none;
     font-size: 1.05rem;
@@ -1390,11 +1627,6 @@ a:hover {
     display: none;
   }
 
-  .chat-selectors {
-    grid-template-columns: minmax(180px, 260px) minmax(150px, 200px);
-    justify-content: end;
-  }
-
   .header-title h1 {
     font-size: 1.25rem;
   }
@@ -1404,11 +1636,11 @@ a:hover {
   }
 
   .messages-area {
-    padding: 20px 28px;
+    padding: 8px 20px;
   }
 
   .chat-input-bar {
-    padding: 16px 28px 20px;
+    padding: 8px 28px 10px;
   }
 }
 
@@ -1423,19 +1655,19 @@ a:hover {
   }
 
   .app-header {
-    min-height: 76px;
-    padding: 14px 18px 12px;
+    min-height: 62px;
+    padding: 8px 16px;
   }
 
   .chat-window {
-    margin: 12px;
+    margin: 8px;
     border-radius: 24px;
   }
 
   .chat-context {
-    min-height: 70px;
+    min-height: 58px;
     grid-template-columns: auto minmax(0, 1fr) auto;
-    padding: 12px 18px;
+    padding: 8px 16px;
   }
 
   .chat-context-title {
@@ -1443,21 +1675,17 @@ a:hover {
     font-size: 1.15rem;
   }
 
-  .chat-selectors {
-    grid-template-columns: minmax(130px, 200px) minmax(120px, 170px);
-  }
-
   .messages-area {
-    padding: 14px 18px;
+    padding: 8px 14px;
   }
 
   .messages-container {
-    max-width: 720px;
-    padding: 26px 24px 18px;
+    max-width: 840px;
+    padding: 16px 22px 14px;
   }
 
   .chat-input-bar {
-    padding: 14px 24px 18px;
+    padding: 8px 22px 10px;
   }
 }
 
@@ -1551,15 +1779,6 @@ a:hover {
     font-size: 0.98rem;
   }
 
-  .chat-selectors {
-    grid-template-columns: 1fr;
-  }
-
-  .chat-selectors select {
-    min-height: 44px;
-    border-radius: 12px;
-  }
-
   .messages-container {
     padding: 14px 10px;
   }
@@ -1612,7 +1831,7 @@ a:hover {
 
   .markdown-body {
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.6;
   }
 
   .message-meta {
@@ -1633,7 +1852,7 @@ a:hover {
 
   .send-button {
     right: 6px;
-    bottom: 6px;
+    top: 50%;
     width: 40px;
     height: 40px;
   }

@@ -1,25 +1,15 @@
 import { RefreshCw, SendHorizonal } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent
+} from "react";
 import type { ChatMessage } from "../types/chat";
 import { LoadingIndicator } from "./LoadingIndicator";
 import { MessageBubble } from "./MessageBubble";
-
-const topicOptions = [
-  "",
-  "Fundamentos de algoritmos",
-  "Estructuras de control",
-  "Complejidad algoritmica",
-  "Arreglos",
-  "Listas",
-  "Pilas",
-  "Colas",
-  "Busqueda secuencial",
-  "Busqueda binaria",
-  "Ordenamiento",
-  "Recursividad",
-  "Arboles binarios",
-  "Arboles binarios de busqueda"
-];
 
 const welcomeGreetingTemplates = [
   (name: string) => ({
@@ -58,10 +48,7 @@ type ChatWindowProps = {
   activeSessionTitle?: string;
   userName: string;
   onRefresh: () => void;
-  onSendMessage: (input: {
-    message: string;
-    topic?: string;
-  }) => Promise<void>;
+  onSendMessage: (message: string) => Promise<void>;
 };
 
 export function ChatWindow({
@@ -75,17 +62,45 @@ export function ChatWindow({
   onSendMessage
 }: ChatWindowProps): JSX.Element {
   const [message, setMessage] = useState("");
-  const [topic, setTopic] = useState("");
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
+  const messagesAreaRef = useRef<HTMLDivElement | null>(null);
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const shouldScrollToOwnMessageRef = useRef(false);
+  const wasNearBottomRef = useRef(true);
+  const tutorMessageRefs = useRef(new Map<string, HTMLElement>());
+  const tutorMessageBeforeSendRef = useRef<string | null | undefined>(undefined);
   const welcomeGreeting = useMemo(() => {
     const greetingKey = `${activeSessionId ?? "inicio"}-${userName}`;
     return welcomeGreetingTemplates[getGreetingIndex(greetingKey)](userName);
   }, [activeSessionId, userName]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, sending]);
+    const latestTutorMessage = [...messages]
+      .reverse()
+      .find((item) => item.role === "assistant");
+    const hasNewTutorResponse =
+      tutorMessageBeforeSendRef.current !== undefined &&
+      latestTutorMessage !== undefined &&
+      latestTutorMessage.id !== tutorMessageBeforeSendRef.current;
+
+    if (hasNewTutorResponse) {
+      if (wasNearBottomRef.current) {
+        tutorMessageRefs.current
+          .get(latestTutorMessage.id)
+          ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+      tutorMessageBeforeSendRef.current = undefined;
+      shouldScrollToOwnMessageRef.current = false;
+      return;
+    }
+
+    if (shouldScrollToOwnMessageRef.current || wasNearBottomRef.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      wasNearBottomRef.current = true;
+    }
+
+    shouldScrollToOwnMessageRef.current = false;
+  }, [messages]);
 
   useEffect(() => {
     const textarea = textareaRef.current;
@@ -98,25 +113,46 @@ export function ChatWindow({
     textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
   }, [message]);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const submitMessage = async () => {
     if (!message.trim() || sending) {
       return;
     }
 
     const content = message.trim();
+    tutorMessageBeforeSendRef.current =
+      [...messages].reverse().find((item) => item.role === "assistant")?.id ?? null;
+    shouldScrollToOwnMessageRef.current = true;
     setMessage("");
 
-    await onSendMessage({
-      message: content,
-      topic: topic || undefined
-    });
+    await onSendMessage(content);
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await submitMessage();
+  };
+
+  const handleMessageKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      void submitMessage();
+    }
   };
 
   const handleSuggestion = (suggestion: string) => {
     setMessage(suggestion);
     textareaRef.current?.focus();
+  };
+
+  const handleMessagesScroll = () => {
+    const messagesArea = messagesAreaRef.current;
+    if (!messagesArea) {
+      return;
+    }
+
+    const distanceToBottom =
+      messagesArea.scrollHeight - messagesArea.scrollTop - messagesArea.clientHeight;
+    wasNearBottomRef.current = distanceToBottom <= 96;
   };
 
   return (
@@ -129,18 +165,6 @@ export function ChatWindow({
           {activeSessionTitle ?? "Nueva conversacion"}
         </strong>
         <div className="chat-context-actions">
-          <div className="chat-selectors">
-            <label>
-              Tema
-              <select value={topic} onChange={(event) => setTopic(event.target.value)}>
-                {topicOptions.map((option) => (
-                  <option key={option || "todos"} value={option}>
-                    {option || "Sin tema fijo"}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
           <button className="icon-button refresh-button" type="button" onClick={onRefresh}>
             <RefreshCw aria-hidden="true" size={18} />
             <span className="sr-only">Actualizar sesiones</span>
@@ -148,7 +172,11 @@ export function ChatWindow({
         </div>
       </div>
 
-      <div className="messages-area">
+      <div
+        className="messages-area"
+        ref={messagesAreaRef}
+        onScroll={handleMessagesScroll}
+      >
         <div className="messages-container">
           {loadingMessages ? (
             <LoadingIndicator label="Cargando mensajes..." />
@@ -178,7 +206,21 @@ export function ChatWindow({
           ) : null}
 
           {messages.map((item) => (
-            <MessageBubble key={item.id} message={item} />
+            <MessageBubble
+              key={item.id}
+              message={item}
+              ref={
+                item.role === "assistant"
+                  ? (element) => {
+                      if (element) {
+                        tutorMessageRefs.current.set(item.id, element);
+                      } else {
+                        tutorMessageRefs.current.delete(item.id);
+                      }
+                    }
+                  : undefined
+              }
+            />
           ))}
 
           {sending ? <LoadingIndicator asMessage /> : null}
@@ -196,6 +238,7 @@ export function ChatWindow({
             id="chat-message"
             value={message}
             onChange={(event) => setMessage(event.target.value)}
+            onKeyDown={handleMessageKeyDown}
             placeholder="Escribi tu consulta sobre Algoritmos y Estructuras de Datos I..."
             rows={2}
             maxLength={4000}

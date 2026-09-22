@@ -58,10 +58,24 @@ export const deleteSession = async (sessionId: string) => {
   await api.delete(`/api/sessions/${sessionId}`);
 };
 
+export const deleteCurrentAccount = async () => {
+  await api.delete("/api/account", {
+    data: { confirmation: "ELIMINAR" }
+  });
+};
+
+export const sendErrorReport = async (input: {
+  category: "tutor_response" | "interface" | "account" | "other";
+  description: string;
+  activity?: string;
+  route: string;
+}) => {
+  await api.post("/api/error-reports", input);
+};
+
 export const sendChatMessage = async (input: {
   sessionId?: string;
   message: string;
-  topic?: string;
 }) => {
   const { data } = await api.post<SendChatResponse>("/api/chat/send", input);
   return data;

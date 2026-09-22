@@ -7,6 +7,8 @@ import {
 } from "./middlewares/errorMiddleware.js";
 import { securityHeadersMiddleware } from "./middlewares/securityMiddleware.js";
 import { chatRoutes } from "./routes/chatRoutes.js";
+import { accountRoutes } from "./routes/accountRoutes.js";
+import { errorReportRoutes } from "./routes/errorReportRoutes.js";
 import { sessionRoutes } from "./routes/sessionRoutes.js";
 
 const app = express();
@@ -37,6 +39,8 @@ app.get("/api/health", (_req, res) => {
 
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/account", accountRoutes);
+app.use("/api/error-reports", errorReportRoutes);
 
 app.use(notFoundMiddleware);
 app.use(errorMiddleware);

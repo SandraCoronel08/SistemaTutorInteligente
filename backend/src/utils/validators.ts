@@ -84,3 +84,35 @@ export const validateTitle = (value: unknown) => {
 
   return title;
 };
+
+export const validateErrorReportCategory = (value: unknown) => {
+  const allowedCategories = ["tutor_response", "interface", "account", "other"] as const;
+
+  if (!allowedCategories.includes(value as (typeof allowedCategories)[number])) {
+    throw new AppError("La categoria del reporte no es valida.", 400);
+  }
+
+  return value as (typeof allowedCategories)[number];
+};
+
+export const validateRequiredText = (
+  value: unknown,
+  fieldName: string,
+  minLength: number,
+  maxLength: number
+) => {
+  if (typeof value !== "string") {
+    throw new AppError(`El campo ${fieldName} debe ser texto.`, 400);
+  }
+
+  const text = value.trim();
+
+  if (text.length < minLength || text.length > maxLength) {
+    throw new AppError(
+      `El campo ${fieldName} debe tener entre ${minLength} y ${maxLength} caracteres.`,
+      400
+    );
+  }
+
+  return text;
+};

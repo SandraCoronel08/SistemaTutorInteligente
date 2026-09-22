@@ -7,6 +7,12 @@ type BuildPromptInput = {
   knowledge: KnowledgeContext;
 };
 
+export type RenderedPromptInput = {
+  message: string;
+  academicContext: string;
+  conversationHistory: string;
+};
+
 const MAX_HISTORY_CHARACTERS = 4_000;
 const MAX_ACADEMIC_CONTEXT_CHARACTERS = 18_000;
 
@@ -148,12 +154,23 @@ ${materials || "Sin materiales relacionados."}
 `, MAX_ACADEMIC_CONTEXT_CHARACTERS);
 };
 
+export const buildTutorPromptFromRenderedContext = ({
+  message,
+  academicContext,
+  conversationHistory
+}: RenderedPromptInput) =>
+  approvedTutorPrompt
+    .replace("{{academic_context}}", academicContext)
+    .replace("{{conversation_history}}", conversationHistory)
+    .replace("{{current_question}}", message);
+
 export const buildTutorPrompt = ({
   message,
   history,
   knowledge
 }: BuildPromptInput) =>
-  approvedTutorPrompt
-    .replace("{{academic_context}}", formatKnowledge(knowledge))
-    .replace("{{conversation_history}}", formatHistory(history))
-    .replace("{{current_question}}", message);
+  buildTutorPromptFromRenderedContext({
+    message,
+    academicContext: formatKnowledge(knowledge),
+    conversationHistory: formatHistory(history)
+  });

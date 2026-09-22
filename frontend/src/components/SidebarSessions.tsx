@@ -1,9 +1,6 @@
-import {
-  LogOut,
-  MessageSquarePlus,
-  PanelLeftClose,
-  Trash2
-} from "lucide-react";
+import { ChevronDown, MessageSquarePlus, PanelLeftClose, Trash2 } from "lucide-react";
+import { useState } from "react";
+import { ProfilePanel } from "./ProfilePanel";
 import type { ChatSession } from "../types/session";
 
 type SidebarSessionsProps = {
@@ -11,12 +8,18 @@ type SidebarSessionsProps = {
   activeSessionId?: string;
   open: boolean;
   loading: boolean;
-  userEmail?: string;
+  disabled: boolean;
+  userName: string;
+  avatarUrl?: string;
   onNewSession: () => void;
   onSelectSession: (sessionId: string) => void;
   onDeleteSession: (sessionId: string) => void;
   onClose: () => void;
   onSignOut: () => void;
+  onDeleteAccount: () => Promise<void>;
+  onUpdateName: (name: string) => Promise<void>;
+  onUploadAvatar: (file: File) => Promise<void>;
+  onRemoveAvatar: () => Promise<void>;
 };
 
 export function SidebarSessions({
@@ -24,18 +27,36 @@ export function SidebarSessions({
   activeSessionId,
   open,
   loading,
-  userEmail,
+  disabled,
+  userName,
+  avatarUrl,
   onNewSession,
   onSelectSession,
   onDeleteSession,
   onClose,
-  onSignOut
+  onSignOut,
+  onDeleteAccount,
+  onUpdateName,
+  onUploadAvatar,
+  onRemoveAvatar
 }: SidebarSessionsProps): JSX.Element {
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+
+  const closeAccountMenu = () => {
+    setAccountMenuOpen(false);
+  };
+
   return (
-    <aside className={`sessions-sidebar ${open ? "sessions-sidebar-open" : ""}`}>
+    <aside
+      className={`sessions-sidebar ${open ? "sessions-sidebar-open" : ""} ${
+        disabled ? "sessions-sidebar-disabled" : ""
+      }`}
+    >
       <div className="sidebar-header">
         <div className="sidebar-brand">
-          <span className="sidebar-logo">AED I</span>
+          <span className="sidebar-logo">
+            <img src="/sti-aed-logo.png" alt="Logo del Tutor Inteligente AED I" />
+          </span>
           <div>
             <strong>Tutor Inteligente AED I</strong>
             <span>Tutor academico</span>
@@ -47,7 +68,12 @@ export function SidebarSessions({
         </button>
       </div>
 
-      <button className="new-session-button" type="button" onClick={onNewSession}>
+      <button
+        className="new-session-button"
+        type="button"
+        onClick={onNewSession}
+        disabled={disabled}
+      >
         <MessageSquarePlus aria-hidden="true" size={18} />
         Nueva conversacion
       </button>
@@ -72,6 +98,7 @@ export function SidebarSessions({
               type="button"
               onClick={() => onSelectSession(session.id)}
               className="session-select-button"
+              disabled={disabled}
             >
               <span>{session.title}</span>
               <time dateTime={session.updated_at}>
@@ -88,6 +115,7 @@ export function SidebarSessions({
               type="button"
               onClick={() => onDeleteSession(session.id)}
               title="Eliminar sesion"
+              disabled={disabled}
             >
               <Trash2 aria-hidden="true" size={16} />
               <span className="sr-only">Eliminar sesion</span>
@@ -96,19 +124,42 @@ export function SidebarSessions({
         ))}
       </nav>
 
-      <div className="sidebar-user">
-        <div className="user-avatar" aria-hidden="true">
-          {(userEmail?.[0] ?? "U").toUpperCase()}
-        </div>
-        <div className="user-details">
-          <strong>Usuario</strong>
-          <span>{userEmail}</span>
-        </div>
-        <button className="logout-button" type="button" onClick={onSignOut}>
-          <LogOut aria-hidden="true" size={18} />
-          <span>Salir</span>
+      <div className="sidebar-account">
+        <button
+          className="sidebar-user"
+          type="button"
+          onClick={() => setAccountMenuOpen((current) => !current)}
+          disabled={disabled}
+          aria-expanded={accountMenuOpen}
+          aria-haspopup="menu"
+        >
+          <div className="user-avatar" aria-hidden="true">
+            {avatarUrl ? (
+              <img src={avatarUrl} alt="" />
+            ) : (
+              (userName.trim()[0] ?? "U").toUpperCase()
+            )}
+          </div>
+          <div className="user-details">
+            <strong>{userName}</strong>
+          </div>
+          <ChevronDown aria-hidden="true" size={18} />
         </button>
+
       </div>
+      {accountMenuOpen ? (
+        <ProfilePanel
+          name={userName}
+          avatarUrl={avatarUrl}
+          disabled={disabled}
+          onClose={closeAccountMenu}
+          onUpdateName={onUpdateName}
+          onUploadAvatar={onUploadAvatar}
+          onRemoveAvatar={onRemoveAvatar}
+          onSignOut={onSignOut}
+          onDeleteAccount={onDeleteAccount}
+        />
+      ) : null}
     </aside>
   );
 }

@@ -1,0 +1,44 @@
+[
+  {
+    "case_id": "algorithm-characteristics",
+    "query": "¿Cuáles son las características de un algoritmo? Separá claramente entrada y salida.",
+    "academic_context": "Temas relacionados:\n- Unidad 1 | Fundamentos de algoritmos | Concepto de algoritmo: Introducción al concepto de algoritmo como secuencia finita, ordenada y precisa de pasos para resolver un problema.\n\nMateriales relacionados:\n- Resumen: concepto de algoritmo (teoria): Un algoritmo es una secuencia finita y ordenada de pasos que permite resolver un problema. Normalmente se analiza identificando entrada, proceso y salida. En Algoritmos y Estructuras de Datos I se recomienda expresar soluciones en lenguaje natural, pseudocodigo o diagramas simples antes de programar.",
+    "history": []
+  },
+  {
+    "case_id": "asymptotic-notation",
+    "query": "Definí brevemente la notación asintótica e incluí un ejemplo.",
+    "academic_context": "Temas relacionados:\n- Unidad III | Notacion asintotica | O, Omega, Theta y o pequena: Definiciones formales de cotas superior, inferior, ajustada y superior estricta, con constantes y umbral n0.\n\nMateriales relacionados:\n- Guia: O, Omega, Theta y o pequena (guia): f pertenece a O(g) si queda acotada por arriba por c*g desde algun n0; pertenece a Omega(g) si queda acotada por abajo; pertenece a Theta(g) si ambas cotas coinciden. f pertenece a o(g) si f/g tiende a 0, una cota superior estricta. No confundir una cota del algoritmo con mejor o peor caso.",
+    "history": []
+  },
+  {
+    "case_id": "singly-linked-list-header",
+    "query": "Explicá una lista simplemente enlazada con nodo cabecera.",
+    "academic_context": "Temas relacionados:\n- Unidad 3 | Listas | Listas enlazadas: Estructura de datos lineal compuesta por nodos enlazados que permite inserciones y eliminaciones dinamicas.\n- Unidad 3 | Listas | Nodo cabecera: Uso de un nodo cabecera para simplificar operaciones y evitar casos especiales al modificar el primer elemento.\n\nMateriales relacionados:\n- Guia del PDF: nodo cabecera (guia): El nodo cabecera simplifica la implementacion porque la lista siempre apunta a un nodo fijo. Asi se reducen casos especiales cuando se inserta o borra el primer elemento y se evita trabajar directamente con una lista nula.\n- Resumen del PDF: variantes de listas enlazadas (teoria): Una lista simple enlaza cada nodo con el siguiente. Una lista doblemente enlazada agrega enlace al nodo anterior. Una lista circular conecta el ultimo nodo con el primero, lo que permite recorridos sin un final nulo explicito.",
+    "history": []
+  },
+  {
+    "case_id": "selection-sort-steps",
+    "query": "Mostrá paso a paso cómo ordenar [4, 2, 5, 1] con ordenamiento por selección.",
+    "academic_context": "Temas relacionados:\n- Unidad 5 | Ordenamiento por seleccion | Seleccion del minimo: Algoritmo que selecciona repetidamente el menor elemento restante y lo ubica en su posicion final.\n\nMateriales relacionados:\n- Sin materiales relacionados.",
+    "history": []
+  },
+  {
+    "case_id": "queue-pseudocode-exercise",
+    "query": "Ejercicio: dada una cola vacía, hacé enqueue(A), enqueue(B), dequeue() y enqueue(C). Mostrá pseudocódigo y la respuesta.",
+    "academic_context": "Temas relacionados:\n- Unidad 3 | Colas | Modelo FIFO: Estructura lineal donde el primer elemento en entrar es el primero en salir.\n\nMateriales relacionados:\n- Ejercicio inicial: colas (ejercicio): Dada una cola vacia, realizar enqueue(A), enqueue(B), dequeue(), enqueue(C). Indicar que elemento queda al frente y explicar el criterio FIFO aplicado.\n- Resumen de apuntes: TDA cola (teoria): Una cola sigue FIFO: el primer elemento que entra es el primero en salir. Sus operaciones basicas son crear, enqueue para insertar al final, dequeue para quitar del frente, front para consultar el primero e isEmpty para verificar si esta vacia. Puede implementarse con arreglos lineales, arreglos circulares o listas ligadas.",
+    "history": []
+  },
+  {
+    "case_id": "brief-abstract-data-type",
+    "query": "¿Qué es un tipo de dato abstracto? Respondé corto.",
+    "academic_context": "Temas relacionados:\n- Unidad 1 | Tipos de datos abstractos | Abstraccion, interfaz y representacion: Modelo que define un conjunto de datos y operaciones, separando la interfaz de uso de la representacion interna.\n\nMateriales relacionados:\n- Resumen del PDF: tipos de datos abstractos (teoria): Un TDA describe que datos se manipulan y que operaciones se pueden realizar, ocultando los detalles de implementacion. El PDF destaca que un mismo TDA puede implementarse con distintas estructuras, siempre que respete la misma interfaz.",
+    "history": []
+  },
+  {
+    "case_id": "outside-aed-i",
+    "query": "¿Cómo preparo una pizza napolitana?",
+    "academic_context": "No se encontro contexto academico especifico en la base de conocimiento.",
+    "history": []
+  }
+]

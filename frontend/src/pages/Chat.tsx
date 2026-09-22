@@ -26,17 +26,26 @@ const getUserDisplayName = (user: ReturnType<typeof useAuth>["user"]) => {
     return metadataName;
   }
 
-  return user?.email?.split("@")[0] ?? "estudiante";
+  return "Usuario";
 };
 
 export function Chat(): JSX.Element {
-  const { user, signOut } = useAuth();
+  const {
+    user,
+    signOut,
+    deleteAccount,
+    profile,
+    updateProfileName,
+    uploadAvatar,
+    removeAvatar
+  } = useAuth();
   const [sessions, setSessions] = useState<ChatSession[]>([]);
   const [activeSessionId, setActiveSessionId] = useState<string | undefined>();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [loadingSessions, setLoadingSessions] = useState(true);
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [sending, setSending] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState("");
 
@@ -44,7 +53,7 @@ export function Chat(): JSX.Element {
     () => sessions.find((session) => session.id === activeSessionId),
     [activeSessionId, sessions]
   );
-  const userDisplayName = useMemo(() => getUserDisplayName(user), [user]);
+  const userDisplayName = useMemo(() => profile.name || getUserDisplayName(user), [profile.name, user]);
 
   const isEmptyDraftSession = useCallback(
     (session?: ChatSession) =>
@@ -52,13 +61,16 @@ export function Chat(): JSX.Element {
     []
   );
 
-  const loadSessions = useCallback(async () => {
+  const loadSessions = useCallback(async (clearError = true) => {
     setLoadingSessions(true);
-    setError("");
+    if (clearError) {
+      setError("");
+    }
 
     try {
       const data = await getSessions();
       setSessions(data);
+      return data;
     } catch (requestError) {
       setError(getApiErrorMessage(requestError));
     } finally {
@@ -66,9 +78,12 @@ export function Chat(): JSX.Element {
     }
   }, []);
 
-  const loadMessages = useCallback(async (sessionId: string) => {
+  const loadMessages = useCallback(async (sessionId: string, clearError = true) => {
     setLoadingMessages(true);
-    setError("");
+    setMessages([]);
+    if (clearError) {
+      setError("");
+    }
 
     try {
       const data = await getSessionMessages(sessionId);
@@ -85,6 +100,10 @@ export function Chat(): JSX.Element {
   }, [loadSessions]);
 
   const handleNewSession = async () => {
+    if (sending) {
+      return;
+    }
+
     setError("");
 
     if (isEmptyDraftSession(activeSession) && messages.length === 0) {
@@ -119,12 +138,20 @@ export function Chat(): JSX.Element {
   };
 
   const handleSelectSession = async (sessionId: string) => {
+    if (sending) {
+      return;
+    }
+
     setActiveSessionId(sessionId);
     setSidebarOpen(false);
     await loadMessages(sessionId);
   };
 
   const handleDeleteSession = async (sessionId: string) => {
+    if (sending) {
+      return;
+    }
+
     setError("");
 
     try {
@@ -140,24 +167,48 @@ export function Chat(): JSX.Element {
     }
   };
 
-  const handleSendMessage = async (input: {
-    message: string;
-    topic?: string;
-  }) => {
+  const handleSendMessage = async (message: string) => {
+    const optimisticMessage: ChatMessage = {
+      id: `optimistic-${crypto.randomUUID()}`,
+      session_id: activeSessionId ?? "optimistic-session",
+      user_id: user?.id ?? "optimistic-user",
+      role: "user",
+      content: message,
+      topic: null,
+      created_at: new Date().toISOString()
+    };
+    const sessionIdAtSend = activeSessionId;
+
     setSending(true);
     setError("");
+    setMessages((current) => [...current, optimisticMessage]);
 
     try {
       const response = await sendChatMessage({
         sessionId: activeSessionId,
-        ...input
+        message
       });
 
       setActiveSessionId(response.sessionId);
       await loadMessages(response.sessionId);
       await loadSessions();
     } catch (requestError) {
-      setError(getApiErrorMessage(requestError));
+      const errorMessage = getApiErrorMessage(requestError);
+      setError(errorMessage);
+
+      const refreshedSessions = await loadSessions(false);
+      const sessionIdToReload = sessionIdAtSend ?? refreshedSessions?.[0]?.id;
+
+      if (sessionIdToReload) {
+        setActiveSessionId(sessionIdToReload);
+        await loadMessages(sessionIdToReload, false);
+      } else {
+        setMessages((current) =>
+          current.filter((message) => message.id !== optimisticMessage.id)
+        );
+      }
+
+      setError(errorMessage);
     } finally {
       setSending(false);
     }
@@ -175,6 +226,24 @@ export function Chat(): JSX.Element {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    setDeletingAccount(true);
+    setError("");
+
+    try {
+      await deleteAccount();
+    } catch (deleteError) {
+      const message =
+        deleteError instanceof Error
+          ? deleteError.message
+          : "No se pudo eliminar la cuenta.";
+      setError(message);
+      throw deleteError;
+    } finally {
+      setDeletingAccount(false);
+    }
+  };
+
   return (
     <main className="app-shell">
       <SidebarSessions
@@ -182,12 +251,18 @@ export function Chat(): JSX.Element {
         activeSessionId={activeSessionId}
         open={sidebarOpen}
         loading={loadingSessions}
-        userEmail={user?.email}
+        disabled={sending || deletingAccount}
+        userName={userDisplayName}
+        avatarUrl={profile.avatarUrl}
         onNewSession={handleNewSession}
         onSelectSession={handleSelectSession}
         onDeleteSession={handleDeleteSession}
         onClose={() => setSidebarOpen(false)}
         onSignOut={handleSignOut}
+        onDeleteAccount={handleDeleteAccount}
+        onUpdateName={updateProfileName}
+        onUploadAvatar={uploadAvatar}
+        onRemoveAvatar={removeAvatar}
       />
       <button
         className={`sidebar-backdrop ${sidebarOpen ? "sidebar-backdrop-open" : ""}`}
