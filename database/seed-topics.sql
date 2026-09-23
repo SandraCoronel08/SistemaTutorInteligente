@@ -1,220 +1,96 @@
 -- seed-topics.sql
--- Tutor Inteligente AED I - Initial academic topics and materials
--- Execute this file after database/schema.sql and database/rls-policies.sql.
+-- Snapshot autoritativo de Supabase remoto: 27 temas y 52 materiales.
+-- Ejecutar despues de database/schema.sql y database/rls-policies.sql.
 
-insert into public.knowledge_topics (unit, topic, subtopic, description, keywords)
+insert into public.knowledge_topics (
+  id, unit, topic, subtopic, description, keywords, created_at, updated_at
+)
 values
-  (
-    'Unidad 1',
-    'Fundamentos de algoritmos',
-    'Concepto de algoritmo',
-    'Introduccion al concepto de algoritmo como secuencia finita, ordenada y precisa de pasos para resolver un problema.',
-    array['algoritmo', 'entrada', 'proceso', 'salida', 'pseudocodigo']
-  ),
-  (
-    'Unidad 1',
-    'Estructuras de control',
-    'Secuenciales, condicionales e iterativas',
-    'Uso de instrucciones secuenciales, decisiones y ciclos para construir soluciones algoritmicas.',
-    array['secuencia', 'condicional', 'if', 'while', 'for', 'iteracion']
-  ),
-  (
-    'Unidad 2',
-    'Complejidad algoritmica',
-    'Notacion Big O',
-    'Analisis basico del crecimiento temporal y espacial de un algoritmo usando notacion asintotica.',
-    array['complejidad', 'big o', 'tiempo', 'espacio', 'eficiencia']
-  ),
-  (
-    'Unidad 3',
-    'Arreglos',
-    'Operaciones basicas',
-    'Estructura de datos lineal de tamano fijo para almacenar elementos accesibles mediante indices.',
-    array['arreglo', 'array', 'indice', 'recorrido', 'insercion']
-  ),
-  (
-    'Unidad 3',
-    'Listas',
-    'Listas enlazadas',
-    'Estructura de datos lineal compuesta por nodos enlazados que permite inserciones y eliminaciones dinamicas.',
-    array['lista', 'nodo', 'enlace', 'puntero', 'lista enlazada']
-  ),
-  (
-    'Unidad 3',
-    'Pilas',
-    'Modelo LIFO',
-    'Estructura lineal donde el ultimo elemento en entrar es el primero en salir.',
-    array['pila', 'stack', 'lifo', 'push', 'pop', 'tope']
-  ),
-  (
-    'Unidad 3',
-    'Colas',
-    'Modelo FIFO',
-    'Estructura lineal donde el primer elemento en entrar es el primero en salir.',
-    array['cola', 'queue', 'fifo', 'enqueue', 'dequeue', 'frente']
-  ),
-  (
-    'Unidad 4',
-    'Busqueda secuencial',
-    'Busqueda lineal',
-    'Algoritmo de busqueda que revisa los elementos uno por uno hasta encontrar el valor buscado o terminar el recorrido.',
-    array['busqueda secuencial', 'busqueda lineal', 'recorrido', 'comparacion']
-  ),
-  (
-    'Unidad 4',
-    'Busqueda binaria',
-    'Division del espacio de busqueda',
-    'Algoritmo eficiente de busqueda sobre datos ordenados que divide repetidamente el intervalo de busqueda.',
-    array['busqueda binaria', 'ordenado', 'mitad', 'logaritmico', 'big o']
-  ),
-  (
-    'Unidad 5',
-    'Ordenamiento burbuja',
-    'Comparacion e intercambio',
-    'Algoritmo de ordenamiento simple basado en comparar elementos adyacentes e intercambiarlos cuando corresponda.',
-    array['burbuja', 'bubble sort', 'ordenamiento', 'intercambio']
-  ),
-  (
-    'Unidad 5',
-    'Ordenamiento por seleccion',
-    'Seleccion del minimo',
-    'Algoritmo que selecciona repetidamente el menor elemento restante y lo ubica en su posicion final.',
-    array['seleccion', 'selection sort', 'minimo', 'ordenamiento']
-  ),
-  (
-    'Unidad 5',
-    'Ordenamiento por insercion',
-    'Insercion ordenada',
-    'Algoritmo que construye una porcion ordenada insertando cada nuevo elemento en la posicion que corresponde.',
-    array['insercion', 'insertion sort', 'ordenamiento', 'posicion']
-  ),
-  (
-    'Unidad 6',
-    'Recursividad',
-    'Caso base y caso recursivo',
-    'Tecnica donde una funcion se invoca a si misma para resolver un problema dividiendolo en subproblemas mas pequenos.',
-    array['recursividad', 'caso base', 'caso recursivo', 'funcion']
-  ),
-  (
-    'Unidad 7',
-    'Arboles binarios',
-    'Recorridos',
-    'Estructura jerarquica donde cada nodo puede tener hasta dos hijos, con recorridos inorden, preorden y postorden.',
-    array['arbol binario', 'nodo', 'raiz', 'inorden', 'preorden', 'postorden']
-  ),
-  (
-    'Unidad 7',
-    'Arboles binarios de busqueda',
-    'Insercion, busqueda y recorrido',
-    'Arbol binario que mantiene una propiedad de orden para facilitar operaciones de busqueda, insercion y recorrido.',
-    array['bst', 'arbol binario de busqueda', 'insercion', 'busqueda', 'recorrido']
-  )
-on conflict (unit, topic, subtopic) do nothing;
+  ('00f3d236-23ac-48f4-a7e0-806970915c84', 'Unidad I', '1. Introducción al lenguaje C', '1.3 Estructuras en C', 'Modelado con struct y typedef, duracion de almacenamiento y gestion completa de memoria con malloc, calloc, realloc y free.', ARRAY['struct', 'typedef', 'memoria estatica', 'memoria dinamica', 'malloc', 'calloc', 'realloc', 'free']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('1066a998-01cb-4b23-8002-a0c4c89d7346', 'Unidad III', '5. Algoritmos recursivos', null, 'Diseno con casos base y reduccion del problema, demostracion de terminacion y analisis mediante recurrencias.', ARRAY['recursion', 'recursividad', 'caso base', 'recurrencia', 'terminacion']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('18f87855-00ea-416d-b6b4-cfaced7fa6e8', 'Unidad IV', '1. Algoritmos de Ordenación', '1.7 Radixsort', 'Ordenamiento no comparativo que procesa claves por digitos usando un metodo estable como counting sort.', ARRAY['radix sort', 'radixsort', 'digito', 'base', 'counting sort', 'no comparativo']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('2d3ada21-7a89-4186-9864-77ced3b6797b', 'Unidad II', '1. Tipos de Datos Abstractos', '1.9 Árboles Splay, operaciones, tiempos', 'Arbol binario de busqueda autoajustable que mueve el nodo accedido hacia la raiz mediante operaciones zig, zig-zig y zig-zag.', ARRAY['splay', 'arbol splay', 'zig', 'zig zig', 'zig zag', 'autoajustable']::text[], '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('35e15af7-0c46-4fd0-845e-bbb636a23976', 'Unidad III', '3. Teoría de Logaritmos', null, 'Propiedades de logaritmos y su uso para analizar divisiones sucesivas, busqueda binaria, alturas y recurrencias.', ARRAY['logaritmo', 'log n', 'base', 'crecimiento', 'busqueda binaria', 'recurrencia']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('476e9159-543b-4604-86bd-b0880b9d71e2', 'Unidad II', '1. Tipos de Datos Abstractos', '1.4 Montículos, operaciones, implementaciones, tiempos', 'Estructura de arbol completo que cumple una propiedad de orden y se usa para implementar colas de prioridad.', ARRAY['heap', 'monticulo', 'insertar', 'eliminar minimo', 'eliminar maximo', 'obtener principal', 'cola prioridad']::text[], '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('4e7761a7-2f65-4513-9d5f-c8246510f8dc', 'Unidad II', '1. Tipos de Datos Abstractos', '1.8 Árboles balanceados, AVL, operaciones, tiempos', 'Arbol binario de busqueda auto-balanceado que mantiene la diferencia de alturas entre subarboles en -1, 0 o 1 mediante rotaciones.', ARRAY['avl', 'arbol avl', 'rotacion', 'balanceo', 'factor balance', 'altura']::text[], '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('65ad4292-961b-4b6f-add2-ba85e2ecd673', 'Unidad II', '1. Tipos de Datos Abstractos', null, 'Modelo que define un conjunto de datos y operaciones, separando la interfaz de uso de la representacion interna.', ARRAY['tda', 'tipo de dato abstracto', 'abstraccion', 'interfaz', 'representacion']::text[], '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('6deb148a-c26f-49c6-a1c3-b9b24c70e177', 'Unidad II', '1. Tipos de Datos Abstractos', '1.6 Árboles, características, implementaciones', 'Estructura jerarquica donde cada nodo puede tener hasta dos hijos, con recorridos inorden, preorden y postorden.', ARRAY['arbol binario', 'nodo', 'raiz', 'inorden', 'preorden', 'postorden']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('6e9921a4-89da-48ea-995a-54cb6f9c0066', 'Unidad I', '1. Introducción al lenguaje C', '1.2 Asignación y uso de memoria: estática y dinámica', 'Diferencias entre memoria estatica y dinamica, uso de malloc, calloc, free, sizeof y punteros void para reservar y liberar memoria.', ARRAY['memoria', 'malloc', 'calloc', 'free', 'sizeof', 'heap', 'memoria dinamica']::text[], '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('803d6500-9465-40a8-a7d4-b9f8399a1c60', 'Unidad IV', '1. Algoritmos de Ordenación', '1.5 Mergesort', 'Ordenamiento estable divide y venceras que divide el arreglo, ordena recursivamente y mezcla en tiempo lineal.', ARRAY['merge sort', 'mergesort', 'mezcla', 'divide y venceras', 'estable']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('85aa4c6b-33b1-4656-baf3-d9d4fe34a82f', 'Unidad IV', '1. Algoritmos de Ordenación', '1.3 Selección', 'Algoritmo que selecciona repetidamente el menor elemento restante y lo ubica en su posicion final.', ARRAY['seleccion', 'selection sort', 'minimo', 'ordenamiento']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('8c0bddc9-f144-4c55-9dba-6bb73f782506', 'Unidad II', '1. Tipos de Datos Abstractos', '1.7 Árboles de Búsqueda Binaria, operaciones, tiempos, recorrido en orden, recorrido post-orden', 'Arbol binario que mantiene una propiedad de orden para facilitar operaciones de busqueda, insercion y recorrido.', ARRAY['bst', 'arbol binario de busqueda', 'insercion', 'busqueda', 'recorrido']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('957adfdb-8cdc-47f9-8054-713b68015406', 'Unidad II', '1. Tipos de Datos Abstractos', '1.10 Algoritmo de codificación de Huffman', 'Compresion sin perdida basada en frecuencias: construccion greedy del arbol, generacion de codigos prefijo, codificacion y decodificacion.', ARRAY['huffman', 'codificacion', 'compresion', 'frecuencia', 'codigo prefijo', 'arbol']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('985978ea-43c3-4eff-a3e9-f6da338a0a20', 'Unidad IV', '1. Algoritmos de Ordenación', '1.4 Shell', 'Generalizacion de insercion que ordena subsecuencias separadas por gaps y reduce progresivamente el incremento hasta uno.', ARRAY['shell sort', 'shellsort', 'gap', 'incremento', 'ordenamiento']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Unidad II', '1. Tipos de Datos Abstractos', '1.1 Listas simples y doblemente ligadas, operaciones, implementaciones, tiempos', 'Estructura de datos lineal compuesta por nodos enlazados que permite inserciones y eliminaciones dinamicas.', ARRAY['lista', 'nodo', 'enlace', 'puntero', 'lista enlazada']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('aa8967ba-0304-479d-98ce-d2c803b7e53e', 'Unidad III', '1. Propiedades del algoritmo: Correcto, Terminación, Eficiencia, Complejidad', null, 'Criterios para justificar que un algoritmo produce el resultado esperado, termina y usa recursos de manera analizable.', ARRAY['correcto', 'correccion', 'terminacion', 'eficiencia', 'complejidad', 'invariante']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('af870be5-049b-46d4-943e-f278a939c124', 'Unidad III', '4. Análisis de Algoritmos, Notación asintótica (O-grande, o-pequeño, tita, omega)', null, 'Definiciones formales de cotas superior, inferior, ajustada y superior estricta, con constantes y umbral n0.', ARRAY['big o', 'omega', 'theta', 'o pequena', 'o chica', 'cota superior', 'cota inferior', 'cota ajustada']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('b08e2542-1629-42a3-94d1-423d71c937fe', 'Unidad II', '1. Tipos de Datos Abstractos', '1.3 Colas, operaciones, implementaciones, tiempos', 'Estructura lineal donde el primer elemento en entrar es el primero en salir.', ARRAY['cola', 'queue', 'fifo', 'enqueue', 'dequeue', 'frente']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('ba95eb10-455e-45df-ae7e-fa3e1db588b0', 'Unidad IV', '1. Algoritmos de Ordenación', '1.6 Quicksort', 'Ordenamiento divide y venceras que particiona alrededor de un pivote y analiza el efecto de su eleccion.', ARRAY['quick sort', 'quicksort', 'particion', 'pivote', 'lomuto', 'hoare']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('bd9aaa73-b7b9-4447-93c7-69ce4320570c', 'Unidad I', '1. Introducción al lenguaje C', '1.1 Macros, Prototipos, Arreglos y Punteros', 'Expansion textual segura de macros, parentesis, efectos laterales, guardas de inclusion y declaracion de prototipos antes del uso.', ARRAY['macro', 'define', 'prototipo', 'funcion', 'header', 'include guard']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('d7c365fb-edbf-4d9b-bd6d-e1bcfd3ad511', 'Unidad IV', '1. Algoritmos de Ordenación', '1.1 Burbuja', 'Algoritmo de ordenamiento simple basado en comparar elementos adyacentes e intercambiarlos cuando corresponda.', ARRAY['burbuja', 'bubble sort', 'ordenamiento', 'intercambio']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('d9e13eec-0668-4f0e-a234-081be579e182', 'Unidad II', '1. Tipos de Datos Abstractos', '1.2 Pilas, operaciones, implementaciones, tiempos', 'Estructura lineal donde el ultimo elemento en entrar es el primero en salir.', ARRAY['pila', 'stack', 'lifo', 'push', 'pop', 'tope']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('dad3ac1b-3e56-47eb-94af-1b5f92a3e3b2', 'Unidad II', '1. Tipos de Datos Abstractos', '1.5 Colas binomiales', 'Cola de prioridad formada por arboles binomiales que permite insertar, extraer minimo o maximo y unir colas en tiempo logaritmico.', ARRAY['cola binomial', 'heap binomial', 'arbol binomial', 'prioridad', 'log n', 'unir']::text[], '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('eb181a33-91e2-4d63-83ab-6e86a155fc1f', 'Unidad III', '2. Comprobaciones por contradicción y por inducción matemática', null, 'Prueba que supone falsa la afirmacion buscada y deriva una imposibilidad logica, diferenciandola de induccion y contrapositiva.', ARRAY['contradiccion', 'demostracion', 'prueba', 'suposicion', 'absurdo']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('f6b8ff68-abdb-45c7-aebd-c37a810f5e5a', 'Unidad IV', '1. Algoritmos de Ordenación', '1.2 Inserción', 'Algoritmo que construye una porcion ordenada insertando cada nuevo elemento en la posicion que corresponde.', ARRAY['insercion', 'insertion sort', 'ordenamiento', 'posicion']::text[], '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('ffc5f691-de27-48fa-91ed-417ff5c17122', 'Unidad IV', '1. Algoritmos de Ordenación', '1.8 Heapsort', 'Ordenamiento in-place que construye un heap y extrae repetidamente el elemento principal en O(n log n).', ARRAY['heapsort', 'heap sort', 'monticulo', 'heap', 'ordenamiento']::text[], '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00')
+on conflict (id) do nothing;
 
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Resumen: concepto de algoritmo',
-  'Un algoritmo es una secuencia finita y ordenada de pasos que permite resolver un problema. Normalmente se analiza identificando entrada, proceso y salida. En Algoritmos y Estructuras de Datos I se recomienda expresar soluciones en lenguaje natural, pseudocodigo o diagramas simples antes de programar.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'teoria'
-from public.knowledge_topics kt
-where kt.topic = 'Fundamentos de algoritmos'
-limit 1
-on conflict (topic_id, title) do nothing;
+insert into public.academic_materials (
+  id, topic_id, title, content, source, type, created_at, updated_at
+)
+values
+  ('04953061-52de-425e-afdc-007f5ce39361', 'af870be5-049b-46d4-943e-f278a939c124', 'Ejercicio tipo examen: Big O con bucles anidados', 'Dado un fragmento con un bucle sobre arrayA, otro sobre arrayB y un tercer bucle con limite constante, determinar la complejidad. La respuesta esperada es O(A*B), porque el tercer bucle no depende del tamano de entrada y se considera constante.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf; Final.pdf; Ordinario-Algoritmos-2021.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('084f9f5e-4db7-4cc3-8579-5ad6a6f1a91e', 'af870be5-049b-46d4-943e-f278a939c124', 'Guia: O, Omega, Theta y o pequena', 'Para funciones no negativas y g(n)>0 para n suficientemente grande, f(n)=o(g(n)) si f(n)/g(n) tiende a 0 cuando n tiende a infinito. Esto implica f(n)=O(g(n)); la recíproca no vale. Ejemplo propio STI: n=o(n²) porque 1/n tiende a 0; n=O(n) pero n no es o(n), pues n/n=1. No deducir o-pequeña a partir de una sola cota O.', 'Cátedra: clase 7.1 explica O, Ω y Θ; o-pequeña sin desarrollo suficiente. Complementaria: David Bindel, Cornell, Order notation, CS6210 p. 1, https://www.cs.cornell.edu/~bindel/class/cs6210-f13/notes/lec04.pdf ; ejemplo propio STI.', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('09dae548-cfd2-4578-8d44-8e48638a1221', '476e9159-543b-4604-86bd-b0880b9d71e2', 'Resumen de apuntes: monticulos', 'Un montículo binario es un árbol completo representable en arreglo. En max-heap cada padre es mayor o igual que sus hijos y la raíz es el máximo; min-heap invierte el criterio. Insertar al final y subir el elemento mientras incumpla la propiedad; para extraer raíz, sustituirla por el último y hundir. Extremo O(1), inserción/extracción O(log n), almacenamiento O(n). Ejemplo propio STI: max-heap [9,5,7], insertar 10 → [10,9,7,5]; extraer 10 → [9,5,7]. Un heap no tiene todos los elementos ordenados.', 'Cátedra: Lab 10 (montículos y operaciones esquemáticas). Complementaria: Sedgewick y Wayne, Princeton, Algorithms §2.4, https://algs4.cs.princeton.edu/24pq/ ; ejemplo propio STI. Las fuentes PDF históricas de la fila no se usan para atribuir este complemento.', 'teoria', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('0b840e6e-3797-43a7-944b-f858f7697460', 'af870be5-049b-46d4-943e-f278a939c124', 'Resumen: Big O', 'La notacion Big O describe como crece el costo de un algoritmo a medida que aumenta el tamano de la entrada. Por ejemplo, un recorrido simple de un arreglo suele tener complejidad temporal O(n), mientras que una busqueda binaria sobre datos ordenados tiene complejidad O(log n).', 'Material base del prototipo Tutor Inteligente AED I', 'teoria', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('0df3bf51-bfca-4914-9de0-a7871bb9a7fe', 'dad3ac1b-3e56-47eb-94af-1b5f92a3e3b2', 'Resumen de apuntes: colas binomiales', 'Una cola binomial de mínimo es un bosque de árboles binomiales con propiedad min-heap y como máximo un árbol de cada grado k. B_k contiene 2^k nodos. Para unir dos árboles del mismo grado, colocar el de raíz mayor bajo la raíz menor; unir colas requiere consolidar grados duplicados. Insertar equivale a unir con B_0; encontrar mínimo recorre raíces; extraer mínimo retira su árbol y une los hijos con el resto. En la implementación citada, esas operaciones son O(log n) en peor caso. Ejemplo propio STI: insertar 7 y 3 une dos B_0 en B_1 con raíz 3 e hijo 7; insertar 5 agrega un B_0 y el mínimo sigue siendo 3.', 'Cátedra: clase 11 y Lab 7 mencionan colas binomiales. Complementaria: Ali Ebnenasir, Michigan Technological University, Binomial Heaps, CS5321 pp. 1–7, https://pages.mtu.edu/~aebnenas/teaching/fall2006/cs5321/lectures/Lec13.pdf ; ejemplo propio STI. Polaridad min-heap sujeta a convención de la cátedra.', 'teoria', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('0ee5c6a5-c96b-456d-915b-bc270886a46c', '4e7761a7-2f65-4513-9d5f-c8246510f8dc', 'Guia de apuntes: AVL y rotaciones', 'Un AVL es un arbol binario de busqueda balanceado por altura. El factor de equilibrio puede expresarse como altura derecha menos altura izquierda. Si al insertar o borrar se rompe el balance, se aplican rotaciones simples o dobles segun el caso.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf; Ultimo final C.pdf', 'guia', '2026-07-10T09:16:47.896643+00:00', '2026-07-10T09:16:47.896643+00:00'),
+  ('25bffb6a-2d85-4e23-95b7-d77ff0b577d8', '4e7761a7-2f65-4513-9d5f-c8246510f8dc', 'Ejercicio tipo examen: insercion en AVL', 'Insertar valores como 5, 7, 6, 12 y 8, o 4, 9, 6 y 15, dibujando el arbol paso a paso e indicando si corresponde rotacion simple o doble. El tutor debe pedir primero el factor de balance antes de mostrar la rotacion.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf; Ultimo final C.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-07-10T09:16:47.896643+00:00'),
+  ('2c3abb17-834b-4d4a-b660-f816ee8606da', 'f6b8ff68-abdb-45c7-aebd-c37a810f5e5a', 'Inserción: prefijo ordenado paso a paso', 'Objetivo: ordenar de menor a mayor [4, 2, 3]. Considerar [4] como parte ya ordenada. Tomar 2: desplazar 4 una posición a la derecha e insertar 2 al comienzo; queda [2, 4, 3]. Tomar 3: desplazar 4 a la derecha e insertar 3 detrás de 2; queda [2, 3, 4]. El prefijo izquierdo está ordenado después de cada inserción. El laboratorio presenta el criterio de insertar cada elemento respecto de los anteriores; esta traza concreta se redactó para el STI y requiere validación docente antes de publicar.', 'Lab 13.2 de AED I (principio de inserción); ejemplo original elaborado para el STI, pendiente de revisión docente.', 'ejemplo', '2026-09-20T20:24:31.825606+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('2ce9a789-eb03-47f4-89b8-df4c572b9ee8', '2d3ada21-7a89-4186-9864-77ced3b6797b', 'Resumen: arbol splay', 'Un arbol splay es un arbol binario de busqueda autoajustable. Cada busqueda, insercion o acceso mueve el nodo utilizado hacia la raiz mediante zig, zig-zig o zig-zag. Esto favorece accesos repetidos a elementos recientes.', 'Ampliacion sugerida: no aparece en TDA Listas_merged.pdf', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-07-10T08:54:38.186556+00:00'),
+  ('2de227da-2cf3-48ff-940b-0c65f30de1c0', '985978ea-43c3-4eff-a3e9-f6da338a0a20', 'Ficha: Shell Sort', 'ShellSort ordena por inserción subsecuencias de elementos separados por incrementos h decrecientes, hasta una última pasada con h=1. Ejemplo propio STI: [8,5,3,1], con h=2 ordenar posiciones 0,2 y 1,3 produce [3,1,8,5]; con h=1 resulta [1,3,5,8]. Su costo depende de la secuencia de incrementos; no aplicar a todas las variantes la cota de una secuencia particular.', 'Cátedra: Lab 13.2 menciona ShellSort sin traza desarrollada. Complementaria: Sedgewick y Wayne, Princeton, Algorithms §2.1, https://algs4.cs.princeton.edu/21elementary/ ; ejemplo propio STI.', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('34426fee-b28d-48a0-b4d6-e01b4d78bc3b', '35e15af7-0c46-4fd0-845e-bbb636a23976', 'Resumen: logaritmos para analizar algoritmos', 'log_b(x)=y equivale a b^y=x, con b>0, b distinto de 1 y x>0. Para x,y positivos, log_b(xy)=log_b x+log_b y, log_b(x/y)=log_b x-log_b y y log_b(x^k)=k log_b x. Cambio de base: log_b x=log_c x/log_c b. Para bases constantes mayores que 1, cambiar de base solo multiplica por una constante. Ejemplo propio STI: reducir 16 a la mitad da 16→8→4→2→1, cuatro pasos = log_2 16. El costo real de un algoritmo depende del número de operaciones efectuadas.', 'Cátedra: clases 7–10 emplean log n, sin teoría completa. Complementaria: OpenStax, College Algebra 2e §§6.3,6.5, https://openstax.org/books/college-algebra-2e/pages/6-5-logarithmic-properties ; ejemplo propio STI.', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('38b7fd50-c158-4524-85fa-ba35ee52f482', 'aa8967ba-0304-479d-98ce-d2c803b7e53e', 'Resumen: concepto de algoritmo', 'Un algoritmo es una secuencia finita y ordenada de pasos que permite resolver un problema. Normalmente se analiza identificando entrada, proceso y salida. En Algoritmos y Estructuras de Datos I se recomienda expresar soluciones en lenguaje natural, pseudocodigo o diagramas simples antes de programar.', 'Material base del prototipo Tutor Inteligente AED I', 'teoria', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('47ebca45-ffd9-4953-b2ee-f4f12229c16b', '2d3ada21-7a89-4186-9864-77ced3b6797b', 'Guia de apuntes: arbol splay', 'Un arbol splay es un ABB autoajustable. Despues de buscar, insertar o eliminar, el nodo relevante se mueve hacia la raiz mediante pasos zig, zig-zig o zig-zag. La idea es mejorar accesos futuros a elementos usados recientemente.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf', 'guia', '2026-07-10T09:16:47.896643+00:00', '2026-07-10T09:16:47.896643+00:00'),
+  ('4c5756fd-91bd-4153-bf7f-ec3269f089da', '00f3d236-23ac-48f4-a7e0-806970915c84', 'Guia: struct y ciclo de vida de memoria', 'struct agrupa campos y typedef crea un alias. La memoria automatica se libera al salir del bloque; la dinamica debe reservarse, comprobarse y liberarse exactamente una vez. Al redimensionar, usar un puntero temporal con realloc para no perder el bloque original si falla.', 'Programa oficial AED I (CD No. 065/2015)', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('517e754d-4fed-465c-8995-da80525c6f44', '00f3d236-23ac-48f4-a7e0-806970915c84', 'Guia del PDF: struct, typedef y punteros', 'Para implementar estructuras de datos en C se usan struct para agrupar campos, typedef para crear alias de tipos y punteros para enlazar nodos o pasar datos por referencia. El operador -> permite acceder a un campo desde un puntero a estructura.', 'TDA Listas_merged.pdf', 'guia', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('5663f8a6-cbbe-4931-aaa2-3a3d1a2b3493', 'd9e13eec-0668-4f0e-a234-081be579e182', 'Ejercicio inicial: pilas', 'Dada una pila inicialmente vacia, realizar las operaciones push(4), push(7), pop(), push(2). Indicar cual es el elemento en el tope al finalizar y explicar el criterio LIFO aplicado.', 'Material base del prototipo Tutor Inteligente AED I', 'ejercicio', '2026-06-27T00:14:23.508522+00:00', '2026-06-27T00:14:23.508522+00:00'),
+  ('5ea8e792-f1c4-4b9f-a0a8-01ae7c875b72', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Ejercicio tipo examen: detectar errores en lista ligada', 'Analizar codigo de lista ligada con nodo cabecera y operaciones crear, agregarInicio y primero. Errores frecuentes: no verificar malloc, asignar incorrectamente el puntero de salida, perder enlaces al insertar y no liberar memoria dinamica.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('63cedcf8-114d-427f-b69c-cfe3ecc4a74a', '85aa4c6b-33b1-4656-baf3-d9d4fe34a82f', 'Selección: elección del mínimo paso a paso', 'Objetivo: ordenar de menor a mayor [4, 2, 3]. Buscar el mínimo de toda la porción no ordenada [4, 2, 3]: es 2; intercambiarlo con el primer elemento y obtener [2, 4, 3]. De la porción restante [4, 3], el mínimo es 3; intercambiarlo con 4 y obtener [2, 3, 4]. La parte inicial queda definitivamente ordenada tras cada selección. El laboratorio expone el criterio de elegir y colocar el menor; esta traza numérica se redactó para el STI y requiere validación docente antes de publicar.', 'Lab 13.2 de AED I (principio de selección); ejemplo original elaborado para el STI, pendiente de revisión docente.', 'ejemplo', '2026-09-20T20:24:31.825606+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('7028daf5-8156-430f-8d1e-896304c50034', 'b08e2542-1629-42a3-94d1-423d71c937fe', 'Ejercicio inspirado en el PDF: turnero por prioridad', 'Una clinica atiende pacientes con prioridad 1 para emergencia, 2 para adultos mayores y 3 para consulta normal. Diseñar las operaciones para registrar paciente y atender el siguiente respetando la prioridad. Indicar que ocurre si dos pacientes tienen la misma prioridad.', 'TDA Listas_merged.pdf', 'ejercicio', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('71b08873-43d6-4a30-8ebe-eeb1acbe6ff6', 'eb181a33-91e2-4d63-83ab-6e86a155fc1f', 'Guia: demostracion por contradiccion', 'Para probar P, suponer no P, mantener explicitas las hipotesis y derivar una contradiccion con una propiedad conocida. Entonces no P es imposible y P debe ser verdadera. En algoritmos puede demostrar imposibilidad, unicidad o que una busqueda no descarta una solucion valida.', 'Programa oficial AED I (CD No. 065/2015)', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('75646c02-6f77-4240-91bf-45916ff3b887', 'af870be5-049b-46d4-943e-f278a939c124', 'Ejemplo: busqueda binaria', 'Para buscar el valor 18 en el arreglo ordenado [3, 8, 12, 18, 25, 31], se compara primero con el elemento central. Segun si el valor buscado es menor o mayor, se descarta una mitad del arreglo y se continua con la otra.
 
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Ejemplo: estructura condicional',
-  'Para decidir si un numero es par, se puede evaluar el resto de dividirlo por 2. Si el resto es 0, el numero es par; en caso contrario, es impar. Este ejemplo usa entrada, decision y salida.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'ejemplo'
-from public.knowledge_topics kt
-where kt.topic = 'Estructuras de control'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Resumen: Big O',
-  'La notacion Big O describe como crece el costo de un algoritmo a medida que aumenta el tamano de la entrada. Por ejemplo, un recorrido simple de un arreglo suele tener complejidad temporal O(n), mientras que una busqueda binaria sobre datos ordenados tiene complejidad O(log n).',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'teoria'
-from public.knowledge_topics kt
-where kt.topic = 'Complejidad algoritmica'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Ejercicio inicial: pilas',
-  'Dada una pila inicialmente vacia, realizar las operaciones push(4), push(7), pop(), push(2). Indicar cual es el elemento en el tope al finalizar y explicar el criterio LIFO aplicado.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'ejercicio'
-from public.knowledge_topics kt
-where kt.topic = 'Pilas'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Ejercicio inicial: colas',
-  'Dada una cola vacia, realizar enqueue(A), enqueue(B), dequeue(), enqueue(C). Indicar que elemento queda al frente y explicar el criterio FIFO aplicado.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'ejercicio'
-from public.knowledge_topics kt
-where kt.topic = 'Colas'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Ejemplo: busqueda binaria',
-  'Para buscar el valor 18 en el arreglo ordenado [3, 8, 12, 18, 25, 31], se compara primero con el elemento central. Segun si el valor buscado es menor o mayor, se descarta una mitad del arreglo y se continua con la otra.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'ejemplo'
-from public.knowledge_topics kt
-where kt.topic = 'Busqueda binaria'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Resumen: recursividad',
-  'Una solucion recursiva debe definir al menos un caso base, que detiene las llamadas, y un caso recursivo, que reduce el problema hacia una version mas simple. Sin caso base correcto, la recursion puede no terminar.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'teoria'
-from public.knowledge_topics kt
-where kt.topic = 'Recursividad'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Guia breve: recorridos de arboles',
-  'En preorden se visita raiz, subarbol izquierdo y subarbol derecho. En inorden se visita subarbol izquierdo, raiz y subarbol derecho. En postorden se visita subarbol izquierdo, subarbol derecho y raiz.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'guia'
-from public.knowledge_topics kt
-where kt.topic = 'Arboles binarios'
-limit 1
-on conflict (topic_id, title) do nothing;
-
-insert into public.academic_materials (topic_id, title, content, source, type)
-select
-  kt.id,
-  'Resumen: arbol binario de busqueda',
-  'En un arbol binario de busqueda, los valores menores que un nodo se ubican en su subarbol izquierdo y los mayores en su subarbol derecho. Esta propiedad permite realizar busquedas guiadas por comparaciones.',
-  'Material base del prototipo Tutor Inteligente AED I',
-  'teoria'
-from public.knowledge_topics kt
-where kt.topic = 'Arboles binarios de busqueda'
-limit 1
-on conflict (topic_id, title) do nothing;
+Comparación complementaria (ejemplo propio STI): en una búsqueda secuencial se examinan elementos consecutivos hasta encontrar el valor o agotar la lista; no exige orden previo. En [4,9,2], encontrar 2 requiere tres comparaciones y buscar 7 termina sin coincidencia tras tres. En el peor caso usa O(n) tiempo y O(1) espacio adicional en forma iterativa. A diferencia de ella, la búsqueda binaria requiere datos ordenados.', 'Cátedra: Lab 13.2 menciona búsqueda secuencial como contraste; material base del prototipo para búsqueda binaria. Complementaria: Sedgewick y Wayne, Princeton, Algorithms §3.1, https://algs4.cs.princeton.edu/31elementary/ ; ejemplo propio STI.', 'ejemplo', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('773f05c8-5b0d-466d-9a83-708ef8d5a89e', 'd7c365fb-edbf-4d9b-bd6d-e1bcfd3ad511', 'Burbuja: intercambios paso a paso', 'Objetivo: ordenar de menor a mayor [4, 2, 3]. Comparar vecinos e intercambiarlos cuando estén invertidos. Primera pasada: comparar 4 y 2: [2, 4, 3]; comparar 4 y 3: [2, 3, 4]. Segunda pasada: comparar 2 y 3, luego 3 y 4; no hay intercambios. Resultado: [2, 3, 4]. Cada pasada completa verifica los pares vecinos. En una variante optimizada, puede detenerse después de una pasada completa sin intercambios. La secuencia numérica es un ejemplo nuevo, no una transcripción del laboratorio.', 'Lab 13.2 de AED I (regla de comparación e intercambio); ejemplo original elaborado para el STI.', 'ejemplo', '2026-09-20T20:24:31.825606+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('803909e1-5626-4baf-8be9-f9010a8e7654', '1066a998-01cb-4b23-8002-a0c4c89d7346', 'Resumen: recursividad', 'Una solucion recursiva debe definir al menos un caso base, que detiene las llamadas, y un caso recursivo, que reduce el problema hacia una version mas simple. Sin caso base correcto, la recursion puede no terminar.', 'Material base del prototipo Tutor Inteligente AED I', 'teoria', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('8730955e-741d-4287-8239-aebbf4dc3e2f', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Ejercicio tipo examen: lista con arreglo en C', 'Completar una lista con arreglo que guarda void** dato, tamActual y tamMax. Las operaciones tipicas son crear, destruir, agregar al final e imprimir. El tutor debe reforzar validacion de punteros, reserva con malloc y control de capacidad.', 'Ultimo final C.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('8caa60f2-b3cc-4fa2-81e5-8594b9c8a59e', '4e7761a7-2f65-4513-9d5f-c8246510f8dc', 'Resumen: arbol AVL', 'Un arbol AVL es un arbol binario de busqueda que conserva balance de altura. Luego de insertar o borrar, se calcula el factor de balance y, si queda fuera de -1, 0 o 1, se aplican rotaciones simples o dobles para restaurar la propiedad.', 'Ampliacion sugerida: no aparece en TDA Listas_merged.pdf', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-07-10T08:54:38.186556+00:00'),
+  ('90e04b3e-1338-43c2-a146-b42492c418e3', 'd9e13eec-0668-4f0e-a234-081be579e182', 'Ejercicio tipo examen: pila con arreglo en C', 'Implementar un TDA pila con arreglo usando una estructura con arreglo de void*, capacidad y sp como cima. Crear debe reservar memoria, push debe validar overflow, pop debe validar underflow y devolver el valor por parametro usando void**.', 'Ultimo final C.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('9658e016-e915-4ac8-92c3-e03812a391d8', '1066a998-01cb-4b23-8002-a0c4c89d7346', 'Guia: razonamiento sobre recursion', 'Definir casos base alcanzables y un caso recursivo que reduzca una medida no negativa. La reduccion demuestra terminacion; induccion puede demostrar correccion. El costo se modela con una recurrencia que incluye subproblemas y trabajo adicional.', 'Programa oficial AED I (CD No. 065/2015)', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('9beb3cdb-c58d-41c8-8e49-13ac00b63367', '803d6500-9465-40a8-a7d4-b9f8399a1c60', 'Ficha: Merge Sort', 'Divide el arreglo en mitades, ordena cada mitad y las mezcla linealmente. Tiempo Theta(n log n) en mejor, promedio y peor caso; espacio auxiliar O(n) para arreglos. Es estable si durante empates se toma primero el elemento de la mitad izquierda y no suele ser in-place.', 'Programa oficial AED I (CD No. 065/2015)', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('9cc887b8-c362-4d9e-bd2e-f73ee6237d61', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Lista simple: operaciones y nodo cabecera', 'Una lista simple ligada almacena cada elemento en un nodo con un dato y una referencia al nodo siguiente. Se recorre siguiendo esas referencias desde el inicio hasta NULL. Entre sus operaciones están insertar, buscar y borrar. La cátedra también muestra una implementación con nodo cabecera: la referencia a la lista apunta siempre a ese nodo, y cabecera->sig apunta al primer elemento de datos o a NULL si la lista está vacía. El nodo cabecera no es un dato de usuario; sirve para simplificar casos como insertar al inicio. En el laboratorio, el campo de valor de la cabecera puede representar el tamaño: esa es una decisión de esa implementación, no una propiedad universal de las listas. Insertar tras un nodo conocido solo cambia enlaces; buscar un valor requiere recorrer nodos y, en general, tiempo O(n).', 'Clases 4, 5 y 5.2; Labs 4 y 5 de AED I. Síntesis redactada para el STI.', 'teoria', '2026-09-20T20:24:31.825606+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('9e76ca68-ec2e-4596-a339-e524c4577a96', 'bd9aaa73-b7b9-4447-93c7-69ce4320570c', 'Arreglos en C: declaración, acceso y relación con punteros', 'Un arreglo en C reúne elementos de un mismo tipo en posiciones consecutivas, identificadas por índices desde 0. Si declaramos int datos[3] = {4, 7, 9}, datos[0] vale 4 y datos[2] vale 9. El nombre del arreglo, en la mayoría de las expresiones, se convierte en un puntero al primer elemento: datos[i] equivale a *(datos + i). Esta relación permite recorrer el arreglo con índices o punteros; no convierte el nombre de un arreglo en una variable puntero reasignable. El programa debe respetar el número de elementos declarados: datos[3] queda fuera de este arreglo. El espacio del arreglo declarado es fijo en este ejemplo; reservar memoria dinámicamente corresponde al apartado I 1.2.', 'Clases 1.1, 2 y 2.2 de AED I; Lab 1 para ejercitación. Síntesis redactada para el STI.', 'teoria', '2026-09-20T20:24:31.825606+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('a28bc77d-c0a3-4475-a913-7bb3ffc0fa02', 'b08e2542-1629-42a3-94d1-423d71c937fe', 'Ejercicio inicial: colas', 'Dada una cola vacia, realizar enqueue(A), enqueue(B), dequeue(), enqueue(C). Indicar que elemento queda al frente y explicar el criterio FIFO aplicado.', 'Material base del prototipo Tutor Inteligente AED I', 'ejercicio', '2026-06-27T00:14:23.508522+00:00', '2026-06-27T00:14:23.508522+00:00'),
+  ('ae53276b-6081-45bb-8cf7-bb339086f8ef', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Comparacion del PDF: listas con arreglos y listas enlazadas', 'En listas contiguas con arreglos, acceder al k-esimo elemento es O(1), pero insertar al inicio puede requerir mover N elementos y cuesta O(N). En listas enlazadas, insertar despues de una posicion conocida puede ser O(1), pero buscar posiciones o elementos suele requerir recorrido O(N).', 'TDA Listas_merged.pdf', 'guia', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('b1d82ab1-5f5f-4a03-89e3-cca7e0e59ebc', 'eb181a33-91e2-4d63-83ab-6e86a155fc1f', 'Ejercicio tipo examen: induccion', 'Probar identidades como 3+5+7+...+(2n+1)=n(n+2) o 3+7+11+...+(4n-1)=n(2n+1). La estructura esperada es caso base, hipotesis para n=k y demostracion para n=k+1.', 'Ultimo final C.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('b52a747b-1e4e-4160-8fe0-afe75622fd80', 'bd9aaa73-b7b9-4447-93c7-69ce4320570c', 'Guia: punteros simples y dobles', 'Un puntero simple guarda una direccion; un doble puntero guarda la direccion de otro puntero y permite modificarlo desde una funcion. En C, un arreglo suele decaer a puntero a su primer elemento, pero no es un puntero reasignable. Usar T** cuando una operacion deba cambiar el puntero del llamador o manejar arreglos de punteros.', 'Programa oficial AED I (CD No. 065/2015)', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('bc892329-e3e3-4a25-8b54-beae8a2048e0', 'bd9aaa73-b7b9-4447-93c7-69ce4320570c', 'Ejemplo: estructura condicional', 'Para decidir si un numero es par, se puede evaluar el resto de dividirlo por 2. Si el resto es 0, el numero es par; en caso contrario, es impar. Este ejemplo usa entrada, decision y salida.', 'Material base del prototipo Tutor Inteligente AED I', 'ejemplo', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('bd5aa54e-41b4-4abb-abc1-ace795153610', 'aa8967ba-0304-479d-98ce-d2c803b7e53e', 'Resumen: propiedades de un algoritmo', 'Un algoritmo tiene pasos precisos, definidos y finitos según la terminología de clase; corrección y eficiencia son conceptos distintos. Corrección parcial: si termina, la salida cumple la especificación. Corrección total: además termina. Para justificar un bucle, establecer una invariante inicial, conservarla en cada iteración y usarla al salir; probar terminación con una medida no negativa que decrezca. Ejemplo propio STI: al buscar x de izquierda a derecha, antes del índice i se sabe que x no aparece en 0..i-1; i aumenta hasta n, por lo que si falla x no está en la lista. La eficiencia estudia tiempo y espacio, no sustituye corrección.', 'Cátedra: clase 1 (preciso/definido/finito) y clase 9 (costo). Complementarias: Cornell, https://www.cs.cornell.edu/courses/cs2112/2017fa/lectures/lecture.html?id=loopinv ; Pomona, https://cs.pomona.edu/classes/cs51/archive/fa2025/lectures/12_loop_invariants_notes.pdf ; ejemplo propio STI.', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('bf3033aa-6d0a-4110-867b-8a9c24ecd6a9', 'ba95eb10-455e-45df-ae7e-fa3e1db588b0', 'Ficha: Quick Sort', 'Particiona alrededor de un pivote y ordena recursivamente ambos lados. Tiempo promedio Theta(n log n), peor caso Theta(n^2) con particiones muy desbalanceadas; pila promedio O(log n) y peor O(n). Suele ser in-place y no estable. Aleatorizar el pivote reduce el riesgo sistematico.', 'Programa oficial AED I (CD No. 065/2015)', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('c8474b9b-2ad9-4778-a717-95a44f6cedcc', 'b08e2542-1629-42a3-94d1-423d71c937fe', 'Guia de apuntes: colas circulares', 'En una cola circular implementada con arreglo se usan indices frente y final. Al avanzar se aplica modulo MAXTAMQ para volver al inicio del arreglo cuando se llega al final fisico. Esto evita desplazar elementos y reutiliza espacios liberados por dequeue.', 'teorias C.pdf; Resumen Algoritmos I.pdf', 'guia', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('cba79d9a-9b11-4716-a309-d8ca700b223f', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Resumen del PDF: variantes de listas enlazadas', 'En una lista doblemente enlazada cada nodo tiene dato y referencias anterior y siguiente. Para insertar B entre A y C, enlazar B con A y C y actualizar A.siguiente y C.anterior: A↔C → A↔B↔C; al borrar B, restaurar A↔C. Si se conoce el nodo y sus vecinos, insertar/borrar cambia un número constante de enlaces: O(1); buscar un nodo por valor requiere O(n). En los extremos hay que actualizar las referencias de inicio/fin o usar centinelas si la implementación los adopta. El ejemplo es propio del STI; no presuponer centinelas en el código de la cátedra.', 'Cátedra: clase 5.1 y Lab 5 cubren parcialmente listas; material TDA Listas_merged.pdf registrado previamente. Complementaria: OpenDSA, Doubly Linked Lists, https://opendsa.cs.vt.edu/ODSA/Books/CS3/html/ListDouble.html ; ejemplo propio STI.', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('d1bbaca9-bf69-486c-93e0-1192e499917b', 'ffc5f691-de27-48fa-91ed-417ff5c17122', 'Ficha: HeapSort', 'HeapSort ascendente in situ construye un max-heap en el arreglo. Luego intercambia raíz y último elemento del heap activo, reduce ese heap y hunde la nueva raíz. Ejemplo propio STI: [4,1,3,2] → heap [4,2,3,1] → [3,2,1|4] → [2,1|3,4] → [1,2,3,4]. Construcción por hundimiento desde abajo O(n), extracciones O(n log n), total O(n log n), espacio adicional O(1) en arreglo mutable. Construir por inserciones sucesivas, en cambio, cuesta O(n log n).', 'Cátedra: Lab 10 cubre heap y Lab 13.2 menciona HeapSort; traza complementaria de Sedgewick y Wayne, Princeton, Algorithms §2.4, https://algs4.cs.princeton.edu/24pq/ ; ejemplo propio STI.', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('d2d35e97-5159-4d3d-bcbb-1ef0a624b43e', 'd9e13eec-0668-4f0e-a234-081be579e182', 'Resumen del PDF: pilas con arreglos y listas', 'Una pila aplica LIFO: el ultimo elemento que entra es el primero en salir. Puede implementarse con arreglo usando una variable cima, o dinamicamente con nodos enlazados. En una pila vacia, pop produce underflow; en una pila llena de tamano fijo, push produce overflow.', 'TDA Listas_merged.pdf', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('d5633239-55aa-4e55-8ca2-69cb7182635b', 'bd9aaa73-b7b9-4447-93c7-69ce4320570c', 'Guia: macros y prototipos en C', 'Una macro se expande textualmente: sus parametros deben parentizarse y no deben evaluarse varias veces si pueden tener efectos laterales. Un prototipo declara nombre, retorno y parametros antes de la llamada, permitiendo al compilador verificar tipos. Practica con macros de expresion, guardas de inclusion y funciones equivalentes.', 'Programa oficial AED I (CD No. 065/2015)', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-08-17T23:50:47.232067+00:00'),
+  ('d5c8e5dd-5385-4392-9a25-79b5aa027396', 'ffc5f691-de27-48fa-91ed-417ff5c17122', 'Guia de apuntes: heapSort', 'HeapSort construye un heap con los elementos del arreglo y luego intercambia repetidamente la raiz con el ultimo elemento no ordenado, reduce el tamano logico del heap y reacomoda la raiz. Su complejidad temporal es O(n log n) y puede ordenar in-place.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf; Ordinario-Algoritmos-2021.pdf', 'guia', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('ddb847b8-eac9-4110-b746-e5dfd5a60855', '18f87855-00ea-416d-b6b4-cfaced7fa6e8', 'Ficha: Radix Sort', 'RadixSort LSD ordena claves de anchura fija desde la cifra menos significativa hasta la más significativa, usando una ordenación estable en cada pasada. La estabilidad conserva el orden ya establecido por cifras anteriores. Ejemplo propio STI, enteros no negativos de dos dígitos en base diez: [21,13,12,31] → unidades [21,31,12,13] → decenas [12,13,21,31]. Con n claves, d cifras y conteo estable por cifra en base b: tiempo O(d(n+b)) y espacio auxiliar O(n+b). Esta variante no especifica manejo de negativos ni de longitudes variables.', 'Cátedra: programa enumera RadixSort; sin desarrollo docente cargado. Complementaria: Sedgewick y Wayne, Princeton, Algorithms §5.1 y LSD.java, https://algs4.cs.princeton.edu/51radix/LSD.java.html ; traza decimal propia STI.', 'teoria', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('df98f6de-7528-4607-b94c-1ce9655b42c4', '9e834411-29bd-42cf-8cd8-ec8e680a7023', 'Guia del PDF: nodo cabecera', 'El nodo cabecera simplifica la implementacion porque la lista siempre apunta a un nodo fijo. Asi se reducen casos especiales cuando se inserta o borra el primer elemento y se evita trabajar directamente con una lista nula.', 'TDA Listas_merged.pdf', 'guia', '2026-07-10T08:54:38.186556+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('e5c22c97-9770-40de-9481-9899a00f1ce4', '957adfdb-8cdc-47f9-8054-713b68015406', 'Guia: codificacion de Huffman', 'Huffman asigna códigos binarios de longitud variable a símbolos según sus frecuencias. Crear una hoja por símbolo y unir repetidamente los dos nodos de menor frecuencia; cada padre tiene peso igual a la suma de sus hijos. Al quedar un árbol, asignar 0 a la rama izquierda y 1 a la derecha: el camino hasta cada hoja es su código. Ningún código completo es prefijo de otro. Ejemplo original STI: A:5, B:2, C:1, D:1; unir C+D=2, B+(CD)=4, (BCD)+A=9. Si A queda a la izquierda y B, C, D a la derecha según ese orden de construcción, A=0, B=10, C=110, D=111; ABCD=010110111. Con empates son válidos otros códigos. Para evaluar compresión real debe contarse también la representación del árbol.', 'Cátedra: programa oficial enumera Huffman; clases y laboratorios cargados sin desarrollo suficiente. Complementaria: Sedgewick y Wayne, Princeton, Algorithms §5.5, https://algs4.cs.princeton.edu/55compression/ ; ejemplo propio STI.', 'guia', '2026-08-17T23:50:47.232067+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('efda97e6-a05d-4bfb-9eff-0988b3986c72', '65ad4292-961b-4b6f-add2-ba85e2ecd673', 'Resumen del PDF: tipos de datos abstractos', 'Un TDA describe que datos se manipulan y que operaciones se pueden realizar, ocultando los detalles de implementacion. El PDF destaca que un mismo TDA puede implementarse con distintas estructuras, siempre que respete la misma interfaz.', 'TDA Listas_merged.pdf', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-07-10T08:54:38.186556+00:00'),
+  ('f15d6566-5430-4850-8ff2-cba2aba62ef0', '6deb148a-c26f-49c6-a1c3-b9b24c70e177', 'Ejercicio tipo examen: recorridos de arbol de expresion', 'Dado un arbol de expresion con operadores internos y operandos como hojas, pedir recorridos inorden, postorden y preorden. El tutor debe guiar recordando que inorden visita izquierda-raiz-derecha, postorden izquierda-derecha-raiz y preorden raiz-izquierda-derecha.', 'AYUDITA C.pdf; Resumen Algoritmos I.pdf; Final.pdf; Ordinario-Algoritmos-2021.pdf', 'ejercicio', '2026-07-10T09:16:47.896643+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('fa4303af-a7a3-4568-811a-0f08fc9afabf', '8c0bddc9-f144-4c55-9dba-6bb73f782506', 'Resumen: arbol binario de busqueda', 'En un ABB, claves menores se almacenan a la izquierda y mayores a la derecha; decidir aparte la política de iguales. Buscar/insertar compara y desciende; inorden produce claves crecientes. Borrar distingue hoja, un hijo o dos hijos: en este último caso, una estrategia es reemplazar por el sucesor (mínimo del subárbol derecho) y retirar el sucesor original. Búsqueda, inserción y borrado cuestan O(h), h altura; puede llegar a O(n) si se degenera y es O(log n) si está balanceado. Ejemplo propio STI: raíz 8, hijos 3 y 10; buscar 10 visita 8→10; borrar 8 con sucesor deja raíz 10 e hijo izquierdo 3.', 'Cátedra: Lab 8 y clase 10 presentan ABB; detalle operativo complementado por Sedgewick y Wayne, Princeton, Algorithms §3.2, https://algs4.cs.princeton.edu/32bst/ ; ejemplo propio STI.', 'teoria', '2026-06-27T00:14:23.508522+00:00', '2026-09-20T20:24:31.825606+00:00'),
+  ('ff22a0c7-4999-4528-8cde-3ad94876e95e', '6deb148a-c26f-49c6-a1c3-b9b24c70e177', 'Guia breve: recorridos de arboles', 'En preorden se visita raiz, subarbol izquierdo y subarbol derecho. En inorden se visita subarbol izquierdo, raiz y subarbol derecho. En postorden se visita subarbol izquierdo, subarbol derecho y raiz.', 'Material base del prototipo Tutor Inteligente AED I', 'guia', '2026-06-27T00:14:23.508522+00:00', '2026-06-27T00:14:23.508522+00:00'),
+  ('ff36a36d-e53b-413b-a440-32fefcfe2683', 'b08e2542-1629-42a3-94d1-423d71c937fe', 'Resumen de apuntes: TDA cola', 'Una cola sigue FIFO: el primer elemento que entra es el primero en salir. Sus operaciones basicas son crear, enqueue para insertar al final, dequeue para quitar del frente, front para consultar el primero e isEmpty para verificar si esta vacia. Puede implementarse con arreglos lineales, arreglos circulares o listas ligadas.', 'teorias C.pdf; AYUDITA C.pdf; Resumen Algoritmos I.pdf', 'teoria', '2026-07-10T09:16:47.896643+00:00', '2026-07-10T09:16:47.896643+00:00'),
+  ('ffc20055-d260-4af9-b933-0dc5125173a6', '6e9921a4-89da-48ea-995a-54cb6f9c0066', 'Resumen del PDF: memoria dinamica', 'La memoria estatica se define antes de ejecutar el programa y mantiene tamano fijo. La memoria dinamica permite reservar espacio en tiempo de ejecucion con malloc o calloc y liberarlo con free cuando deja de ser necesario.', 'TDA Listas_merged.pdf', 'teoria', '2026-07-10T08:54:38.186556+00:00', '2026-07-10T08:54:38.186556+00:00')
+on conflict (id) do nothing;

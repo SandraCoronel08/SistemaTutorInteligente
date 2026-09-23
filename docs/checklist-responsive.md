@@ -12,7 +12,6 @@
 | RES-CHK-08 | Input visible abajo | Si | Si | Si | Si | Aprobado |
 | RES-CHK-09 | Mensajes con scroll propio | Si | Si | Si | Si | Aprobado |
 | RES-CHK-10 | Mensajes sin desborde | Si | Si | Si | Si | Aprobado |
-| RES-CHK-11 | Selects adaptables | Si | Si | Si | Si | Aprobado |
 | RES-CHK-12 | Sidebar usable | Fijo | Fijo compacto | Drawer | Drawer | Aprobado |
 | RES-CHK-13 | Boton hamburguesa | No requiere | No requiere | Visible | Visible | Aprobado |
 | RES-CHK-14 | Sugerencias en una columna movil | No aplica | No aplica | Si | Si | Aprobado |
@@ -27,4 +26,4 @@
 
 ## Conclusion
 
-El checklist responsive confirma que la interfaz mantiene usabilidad en los rangos definidos para la presentacion del TFG, con especial atencion a login, registro, chat, sidebar, mensajes, input y selectores.
+El checklist responsive confirma que la interfaz mantiene usabilidad en los rangos definidos para la presentacion del TFG, con especial atencion a login, registro, chat, sidebar, mensajes e input.

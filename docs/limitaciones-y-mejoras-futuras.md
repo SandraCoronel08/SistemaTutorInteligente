@@ -7,7 +7,7 @@
 - No corrige codigo automaticamente.
 - No incluye compilador ni entorno de ejecucion de algoritmos.
 - No se integra al sistema academico institucional.
-- Depende de APIs externas como Supabase y Gemini.
+- Depende de APIs externas como Supabase y OpenRouter.
 - Puede generar respuestas que requieren revision docente.
 - La seguridad implementada es basica y adecuada para un prototipo academico, no para un entorno productivo de alta criticidad.
 - El rate limit es en memoria, por lo que no es suficiente para despliegues distribuidos.

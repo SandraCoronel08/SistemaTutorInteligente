@@ -28,12 +28,6 @@
 2. Presionar "Nueva conversacion".
 3. El area principal queda lista para iniciar una consulta.
 
-## Seleccionar tema
-
-1. En el encabezado del chat, abrir el selector "Tema".
-2. Elegir un tema del programa de AED I.
-3. Escribir la consulta y enviarla.
-
 ## Enviar consultas
 
 1. Escribir la pregunta en la barra inferior.
@@ -66,4 +60,4 @@ El tutor puede entregar enunciado, pistas progresivas y explicaciones. Si el est
 
 ## Uso desde celular
 
-En celular, el sidebar se abre mediante el boton hamburguesa. El chat ocupa todo el ancho disponible, el input permanece abajo y el selector de tema se acomoda en una disposicion compacta. Se recomienda escribir consultas breves y revisar las respuestas con desplazamiento vertical dentro del area de mensajes.
+En celular, el sidebar se abre mediante el boton hamburguesa. El chat ocupa todo el ancho disponible y el input permanece abajo. Se recomienda escribir consultas breves y revisar las respuestas con desplazamiento vertical dentro del area de mensajes.

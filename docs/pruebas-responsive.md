@@ -1,15 +1,15 @@
 # Pruebas responsive
 
-Las pruebas responsive verifican que la interfaz sea usable en escritorio, notebook, tablet y celular. La validacion se realizo luego de ajustar login, registro, chat, sidebar, header, mensajes, input, botones y selectores.
+Las pruebas responsive verifican que la interfaz sea usable en escritorio, notebook, tablet y celular. La validacion se realizo luego de ajustar login, registro, chat, sidebar, header, mensajes, input y botones.
 
-| ID | Resolucion | Dispositivo de referencia | Login visible | Registro visible | Chat visible | Sidebar usable | Input visible | Mensajes legibles | Selects visibles | Sin scroll horizontal | Envio funcionando | Estado |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| RES-001 | 1920 x 1080 | Escritorio | Si | Si | Si | Si, fijo | Si | Si | Si | Si | Si | Aprobado |
-| RES-002 | 1366 x 768 | Notebook | Si | Si | Si | Si, fijo | Si | Si | Si | Si | Si | Aprobado |
-| RES-003 | 1024 x 768 | Tablet horizontal | Si | Si | Si | Si, compacto | Si | Si | Si | Si | Si | Aprobado |
-| RES-004 | 768 x 1024 | Tablet vertical | Si | Si | Si | Si, drawer | Si | Si | Si | Si | Si | Aprobado |
-| RES-005 | 390 x 844 | Celular | Si | Si | Si | Si, hamburguesa | Si | Si | Si, apilados | Si | Si | Aprobado |
-| RES-006 | 360 x 740 | Celular pequeno | Si | Si | Si | Si, hamburguesa | Si | Si | Si, apilados | Si | Si | Aprobado |
+| ID | Resolucion | Dispositivo de referencia | Login visible | Registro visible | Chat visible | Sidebar usable | Input visible | Mensajes legibles | Sin scroll horizontal | Envio funcionando | Estado |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| RES-001 | 1920 x 1080 | Escritorio | Si | Si | Si | Si, fijo | Si | Si | Si | Si | Aprobado |
+| RES-002 | 1366 x 768 | Notebook | Si | Si | Si | Si, fijo | Si | Si | Si | Si | Aprobado |
+| RES-003 | 1024 x 768 | Tablet horizontal | Si | Si | Si | Si, compacto | Si | Si | Si | Si | Aprobado |
+| RES-004 | 768 x 1024 | Tablet vertical | Si | Si | Si | Si, drawer | Si | Si | Si | Si | Aprobado |
+| RES-005 | 390 x 844 | Celular | Si | Si | Si | Si, hamburguesa | Si | Si | Si | Si | Aprobado |
+| RES-006 | 360 x 740 | Celular pequeno | Si | Si | Si | Si, hamburguesa | Si | Si | Si | Si | Aprobado |
 
 ## Criterios verificados
 
@@ -21,7 +21,6 @@ Las pruebas responsive verifican que la interfaz sea usable en escritorio, noteb
 - El input permanece visible abajo.
 - Las burbujas de mensajes no desbordan el ancho.
 - Las sugerencias se muestran en una columna en celular.
-- El selector de tema se acomoda en pantallas pequenas.
 - El sidebar se mantiene fijo en escritorio y funciona como drawer en tablet/celular.
 
 ## Procedimiento recomendado en DevTools
@@ -33,7 +32,7 @@ Las pruebas responsive verifican que la interfaz sea usable en escritorio, noteb
 5. Iniciar sesion con usuario de prueba.
 6. Abrir y cerrar sidebar.
 7. Enviar un mensaje corto.
-8. Verificar que el input, mensajes y selectores sigan visibles.
+8. Verificar que el input y los mensajes sigan visibles.
 9. Confirmar que no aparezca scroll horizontal.
 
 ## Conclusion

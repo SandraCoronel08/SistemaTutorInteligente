@@ -10,11 +10,11 @@ El sistema ya cuenta con una base de seguridad correcta para un prototipo academ
 - Las rutas `/api/chat` y `/api/sessions` estan protegidas por middleware de autenticacion.
 - RLS esta definido para `chat_sessions`, `chat_messages`, `knowledge_topics` y `academic_materials`.
 - Las sesiones y mensajes se filtran por usuario autenticado.
-- Gemini se consume solo desde el backend.
+- OpenRouter se consume solo desde el backend.
 - `.env` esta incluido en `.gitignore`.
 - Los archivos `.env.example` no contienen claves reales.
 - `backend/.env` contiene variables privadas del backend y `frontend/.env` contiene solo variables publicas `VITE_*`.
-- No se encontraron `GEMINI_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `service_role` ni `sb_secret_` en `frontend/src` ni en `frontend/dist` despues del build final.
+- No se encontraron `OPENROUTER_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `service_role` ni `sb_secret_` en `frontend/src` ni en `frontend/dist` despues del build final.
 
 ## Riesgos encontrados
 
@@ -40,8 +40,8 @@ El sistema ya cuenta con una base de seguridad correcta para un prototipo academ
 
 1. Ejecutar `database/rls-policies.sql` en Supabase y verificar que RLS quede activo en el panel.
 2. Confirmar en Supabase Auth que Google OAuth tenga como redirect permitido `http://localhost:5173/chat` y el dominio de produccion si existe.
-3. Mantener `SUPABASE_SERVICE_ROLE_KEY` y `GEMINI_API_KEY` solo en backend.
-4. Revisar antes de entregar que `frontend/dist` no contenga `service_role`, `SUPABASE_SERVICE_ROLE_KEY` ni `GEMINI_API_KEY`.
+3. Mantener `SUPABASE_SERVICE_ROLE_KEY` y `OPENROUTER_API_KEY` solo en backend.
+4. Revisar antes de entregar que `frontend/dist` no contenga `service_role`, `SUPABASE_SERVICE_ROLE_KEY` ni `OPENROUTER_API_KEY`.
 5. Considerar instalar `helmet` y `express-rate-limit` si se desea una solucion mantenida por librerias.
 6. Ejecutar las pruebas de `docs/pruebas-tecnicas.md` y `docs/pruebas-seguridad.md` antes de la defensa.
 
@@ -62,6 +62,6 @@ El prototipo implementa una seguridad basica adecuada para un Trabajo Final de G
 - [ ] `knowledge_topics` y `academic_materials` son solo lectura para usuarios autenticados.
 - [ ] CORS permite solo origenes configurados en `CORS_ORIGIN`.
 - [ ] El endpoint de chat valida mensaje vacio y longitud maxima.
-- [ ] Gemini se invoca solo desde backend.
+- [ ] OpenRouter se invoca solo desde backend.
 - [ ] El tutor rechaza pedidos de claves, tokens, instrucciones internas o datos de otros usuarios.
 - [ ] La busqueda en `frontend/dist` no encuentra claves privadas luego de cada build.

@@ -59,7 +59,7 @@ export function Register(): JSX.Element {
         <div className="toggle-container">
           <div className="toggle">
             <div className="toggle-panel toggle-left">
-              <span className="brand-mark">AED I</span>
+              <img className="brand-logo" src="/sti-aed-logo.png" alt="Logo del Tutor Inteligente AED I" />
               <h1>Bienvenido de nuevo</h1>
               <p>
                 Ingresa con tu cuenta para continuar usando el tutor academico.
@@ -75,7 +75,7 @@ export function Register(): JSX.Element {
             </div>
 
             <div className="toggle-panel toggle-right">
-              <span className="brand-mark">AED I</span>
+              <img className="brand-logo" src="/sti-aed-logo.png" alt="Logo del Tutor Inteligente AED I" />
               <h1>Hola, estudiante</h1>
               <p>
                 Crea una cuenta para guardar tus conversaciones y avanzar con AED I.

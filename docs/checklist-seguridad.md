@@ -3,7 +3,7 @@
 | ID | Control | Resultado esperado | Resultado obtenido | Estado |
 | --- | --- | --- | --- | --- |
 | SEG-ENV-01 | `.env` ignorado | `.env`, `backend/.env` y `frontend/.env` no se versionan | `.gitignore` incluye esos archivos | Aprobado |
-| SEG-ENV-02 | Claves privadas solo backend | `SUPABASE_SERVICE_ROLE_KEY` y `GEMINI_API_KEY` no estan en frontend | Variables privadas documentadas solo para backend | Aprobado |
+| SEG-ENV-02 | Claves privadas solo backend | `SUPABASE_SERVICE_ROLE_KEY` y `OPENROUTER_API_KEY` no estan en frontend | Variables privadas documentadas solo para backend | Aprobado |
 | SEG-ENV-03 | Frontend con variables publicas | Solo variables `VITE_*` en frontend | `frontend/.env.example` contiene `VITE_API_URL`, `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | Aprobado |
 | SEG-ENV-04 | Ejemplos sin secretos | `.env.example` no contiene claves reales | Archivos de ejemplo sin valores sensibles | Aprobado |
 | SEG-AUTH-01 | Bearer token | Frontend envia token en Authorization | API client usa token de Supabase | Aprobado |

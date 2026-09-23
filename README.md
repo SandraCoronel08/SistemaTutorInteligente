@@ -2,7 +2,7 @@
 
 ## Descripcion
 
-Tutor Inteligente AED I es un prototipo academico de sistema tutor conversacional para apoyar el aprendizaje de la asignatura Algoritmos y Estructuras de Datos I. La aplicacion permite a los estudiantes registrarse, iniciar sesion, conversar con un tutor basado en IA, seleccionar tema, generar explicaciones o ejercicios, y recuperar el historial de conversaciones.
+Tutor Inteligente AED I es un prototipo academico de sistema tutor conversacional para apoyar el aprendizaje de la asignatura Algoritmos y Estructuras de Datos I. La aplicacion permite a los estudiantes registrarse, iniciar sesion, conversar con un tutor basado en IA, generar explicaciones o ejercicios, y recuperar el historial de conversaciones.
 
 El sistema fue desarrollado como prototipo para un Trabajo Final de Grado. No reemplaza al docente ni constituye una herramienta de evaluacion formal; su alcance es brindar apoyo academico guiado dentro del dominio de AED I.
 
@@ -13,21 +13,21 @@ Desarrollar un prototipo funcional de tutor inteligente que integre autenticacio
 ## Tecnologias utilizadas
 
 - Frontend: React, TypeScript, Vite, React Router, Axios, Supabase JS, React Markdown, Lucide React.
-- Backend: Node.js, Express, TypeScript, Supabase JS, Google Generative AI SDK.
+- Backend: Node.js, Express, TypeScript, Supabase JS y `fetch` nativo de Node.js.
 - Base de datos y autenticacion: Supabase Auth, PostgreSQL, Row Level Security.
-- IA generativa: Gemini API, consumida exclusivamente desde el backend.
+- IA generativa: OpenRouter con `openai/gpt-5.6-luna`, consumida exclusivamente desde el backend.
 - Estilos: CSS responsivo con media queries.
 
 ## Arquitectura general
 
 La arquitectura es cliente-servidor:
 
-- El frontend presenta las pantallas de login, registro, chat, sidebar, historial y selector de tema.
+- El frontend presenta las pantallas de login, registro, chat, sidebar e historial.
 - Supabase Auth gestiona autenticacion por email/contrasena y Google OAuth.
 - El frontend obtiene el `access_token` de Supabase y lo envia al backend mediante `Authorization: Bearer`.
 - El backend valida el token con Supabase, procesa las solicitudes y usa el usuario autenticado para consultar o guardar datos.
 - Supabase almacena sesiones, mensajes y material academico.
-- Gemini genera respuestas del tutor a partir del mensaje del estudiante, historial reciente y contexto academico recuperado.
+- OpenRouter genera respuestas con `openai/gpt-5.6-luna` a partir del mensaje del estudiante, historial reciente y contexto academico recuperado.
 
 ## Instalacion del backend
 
@@ -58,8 +58,8 @@ CORS_ORIGIN=http://localhost:5173,http://127.0.0.1:5173
 SUPABASE_URL=
 SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
-GEMINI_API_KEY=
-GEMINI_MODEL=gemini-2.5-flash
+OPENROUTER_API_KEY=
+OPENROUTER_MODEL=openai/gpt-5.6-luna
 ```
 
 Frontend:
@@ -70,7 +70,7 @@ VITE_SUPABASE_URL=
 VITE_SUPABASE_ANON_KEY=
 ```
 
-Las claves privadas `SUPABASE_SERVICE_ROLE_KEY` y `GEMINI_API_KEY` deben permanecer solo en el backend. Los archivos `.env` estan incluidos en `.gitignore`.
+Las claves privadas `SUPABASE_SERVICE_ROLE_KEY` y `OPENROUTER_API_KEY` deben permanecer solo en el backend. Los archivos `.env` estan incluidos en `.gitignore`.
 
 ## Configuracion de Supabase
 
@@ -89,12 +89,12 @@ Las claves privadas `SUPABASE_SERVICE_ROLE_KEY` y `GEMINI_API_KEY` deben permane
    - Dominio de produccion si corresponde.
 4. Verificar que el boton "Continuar con Google" redireccione correctamente al chat.
 
-## Configuracion de Gemini API
+## Configuracion de OpenRouter
 
-1. Obtener una clave de Gemini API.
-2. Guardarla solo en `backend/.env` como `GEMINI_API_KEY`.
-3. Definir el modelo en `GEMINI_MODEL`.
-4. Verificar que el backend sea el unico componente que invoque la API.
+1. Obtener una clave de OpenRouter.
+2. Guardarla solo en `backend/.env` como `OPENROUTER_API_KEY`.
+3. Opcionalmente definir `OPENROUTER_MODEL`; por defecto se usa `openai/gpt-5.6-luna`.
+4. Verificar que el backend sea el unico componente que invoque OpenRouter.
 
 ## Ejecucion local
 
@@ -123,7 +123,7 @@ Por defecto:
 - Inicio de sesion con email y contrasena.
 - Inicio de sesion real con Google mediante Supabase Auth.
 - Chat academico con IA para AED I.
-- Seleccion de tema.
+- Recuperacion automatica de contexto academico desde la consulta.
 - Generacion de explicaciones, ejemplos y ejercicios.
 - Historial persistente de conversaciones.
 - Sidebar de sesiones.
@@ -176,7 +176,7 @@ Se verifico que no exista scroll horizontal, que el input del chat permanezca vi
 - No corrige codigo automaticamente.
 - No incluye compilador.
 - No se integra al sistema academico institucional.
-- Depende de Supabase y Gemini como servicios externos.
+- Depende de Supabase y OpenRouter como servicios externos.
 - Puede generar respuestas que requieren revision docente.
 
 ## Mejoras futuras

@@ -11,7 +11,7 @@ Este documento lista capturas y evidencias recomendadas para respaldar la presen
 - Chat vacio con sugerencias iniciales.
 - Chat con respuesta del tutor.
 - Generacion de ejercicio de AED I.
-- Selector de tema.
+- Recuperacion automatica de contexto academico.
 - Historial de conversaciones en sidebar.
 - Recuperacion de una conversacion anterior.
 - Cierre de sesion.
@@ -26,7 +26,6 @@ Este documento lista capturas y evidencias recomendadas para respaldar la presen
 - Chat en escritorio `1920 x 1080`.
 - Sidebar drawer abierto en celular.
 - Input visible abajo en celular.
-- Selectores apilados en celular.
 
 ## Capturas de Supabase
 
@@ -51,6 +50,13 @@ Este documento lista capturas y evidencias recomendadas para respaldar la presen
 - Respuesta HTTP 400 con mensaje vacio.
 - Respuesta HTTP 400 con mensaje mayor a 4000 caracteres.
 - Respuesta HTTP 429 por rate limit.
+
+## Anexos de evaluacion existentes
+
+- Comparacion reproducible de modelos de la Fase 3: metodologia, casos congelados y comando de consolidacion en `evals/model-comparison/README.md`.
+- Inventario academico vigente: evidencia de 27 registros en `knowledge_topics` y 52 en `academic_materials`, junto con el seed sincronizado `database/seed-topics.sql`.
+- Medicion de latencia de la Fase 6: conservar la planilla o registro de las cinco mediciones realizadas, incluyendo tiempos totales y de modelo; no constituye un nuevo experimento.
+- Pruebas de regresion de la Fase 7: conservar las evidencias manuales y los resultados de typecheck, build y `git diff --check` de ese cierre.
 
 ## Capturas de seguridad
 

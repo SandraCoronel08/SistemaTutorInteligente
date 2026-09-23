@@ -11,9 +11,9 @@ El prototipo esta delimitado al acompanamiento del aprendizaje. No sustituye la 
 La aplicacion se organiza en dos capas principales:
 
 - Frontend: aplicacion React con Vite encargada de la interfaz, autenticacion desde el cliente con Supabase Auth y consumo de la API propia.
-- Backend: API REST en Express encargada de validar tokens, aplicar controles de seguridad, consultar Supabase, construir el prompt academico y consumir Gemini.
+- Backend: API REST en Express encargada de validar tokens, aplicar controles de seguridad, consultar Supabase, construir el prompt academico y consumir OpenRouter.
 
-Supabase cumple dos funciones: proveedor de autenticacion y base de datos PostgreSQL. Gemini se usa solo desde el backend para evitar exponer la clave privada en el navegador.
+Supabase cumple dos funciones: proveedor de autenticacion y base de datos PostgreSQL. OpenRouter se usa solo desde el backend para evitar exponer la clave privada en el navegador.
 
 ## Flujo de autenticacion
 
@@ -37,15 +37,14 @@ Supabase cumple dos funciones: proveedor de autenticacion y base de datos Postgr
 ## Flujo de envio de mensaje
 
 1. El usuario escribe una consulta en el chat.
-2. Puede seleccionar tema.
-3. El frontend valida estado basico y envia el mensaje al backend.
-4. El backend autentica el token.
-5. El backend valida mensaje, tema y sesion.
-6. El backend recupera historial reciente y contexto academico.
-7. Se construye un prompt con reglas pedagogicas y de seguridad.
-8. Gemini genera la respuesta.
-9. El backend guarda el mensaje del usuario y la respuesta del tutor.
-10. El frontend recarga los mensajes de la sesion.
+2. El frontend valida estado basico y envia el mensaje al backend.
+3. El backend autentica el token.
+4. El backend valida mensaje y sesion.
+5. El backend recupera en paralelo historial reciente y contexto academico a partir de la consulta.
+6. Se construye un prompt con reglas pedagogicas y de seguridad.
+7. OpenRouter genera la respuesta con `openai/gpt-5.6-luna`.
+8. El backend guarda el mensaje del usuario y la respuesta del tutor.
+9. El frontend recarga los mensajes de la sesion.
 
 ## Flujo de almacenamiento del historial
 
@@ -92,7 +91,7 @@ TutorFIUNI/
 - Supabase Auth para autenticacion.
 - Supabase PostgreSQL para persistencia.
 - Row Level Security para aislamiento de datos.
-- Gemini API para generacion de respuestas.
+- OpenRouter para generacion de respuestas con `openai/gpt-5.6-luna`.
 - Markdown para renderizar respuestas del tutor.
 
 ## Variables de entorno
@@ -105,8 +104,8 @@ Backend:
 - `SUPABASE_URL`
 - `SUPABASE_ANON_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
-- `GEMINI_API_KEY`
-- `GEMINI_MODEL`
+- `OPENROUTER_API_KEY`
+- `OPENROUTER_MODEL` (opcional; por defecto `openai/gpt-5.6-luna`)
 
 Frontend:
 

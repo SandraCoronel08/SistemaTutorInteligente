@@ -43,13 +43,15 @@ export const sendChatMessage = async (
     const message = validateMessage(req.body?.message);
     const sessionIdInput = validateOptionalUuid(req.body?.sessionId, "sessionId");
     const topic = validateOptionalText(req.body?.topic, "topic", 120);
-
     const session = sessionIdInput
       ? await getSessionById(supabase, userId, sessionIdInput)
       : await createSession(supabase, userId, buildSessionTitle(message));
 
-    const history = await getRecentMessages(supabase, userId, session.id, 6);
-    const knowledge = await findKnowledgeContext(supabase, message, topic);
+    const [history, knowledge] = await Promise.all([
+      getRecentMessages(supabase, userId, session.id, 6),
+      findKnowledgeContext(supabase, message, topic)
+    ]);
+
     const prompt = buildTutorPrompt({
       message,
       history,

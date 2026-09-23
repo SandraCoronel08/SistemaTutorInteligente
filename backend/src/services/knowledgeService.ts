@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { AppError } from "../middlewares/errorMiddleware.js";
 
 export type KnowledgeContext = {
   topics: {
@@ -56,11 +57,15 @@ export const findKnowledgeContext = async (
     )
     .join(",");
 
-  const { data: topics } = await supabase
+  const { data: topics, error: topicsError } = await supabase
     .from("knowledge_topics")
     .select("id, unit, topic, subtopic, description, keywords")
     .or(orFilter)
     .limit(5);
+
+  if (topicsError) {
+    throw new AppError("No se pudo recuperar el contexto academico.", 500);
+  }
 
   const topicRows = (topics ?? []) as KnowledgeContext["topics"];
   const topicIds = topicRows.map((item) => item.id);
@@ -69,11 +74,15 @@ export const findKnowledgeContext = async (
     return { topics: [], materials: [] };
   }
 
-  const { data: materials } = await supabase
+  const { data: materials, error: materialsError } = await supabase
     .from("academic_materials")
     .select("id, topic_id, title, content, source, type")
     .in("topic_id", topicIds)
     .limit(6);
+
+  if (materialsError) {
+    throw new AppError("No se pudo recuperar el contexto academico.", 500);
+  }
 
   return {
     topics: topicRows,
